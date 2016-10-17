@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Core", "FoodManagement.Core\FoodManagement.Core.csproj", "{2D21A984-29F0-4CF2-B55F-B974718BD5E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Core.Model", "FoodManagement.Core.Model\FoodManagement.Core.Model.csproj", "{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{42575DF9-04B8-412F-8768-0A0F5BCA3BC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D21A984-29F0-4CF2-B55F-B974718BD5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D21A984-29F0-4CF2-B55F-B974718BD5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D21A984-29F0-4CF2-B55F-B974718BD5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D21A984-29F0-4CF2-B55F-B974718BD5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D21A984-29F0-4CF2-B55F-B974718BD5E0} = {42575DF9-04B8-412F-8768-0A0F5BCA3BC9}
+		{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD} = {42575DF9-04B8-412F-8768-0A0F5BCA3BC9}
+	EndGlobalSection
+EndGlobal
