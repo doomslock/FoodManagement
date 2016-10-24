@@ -42,8 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationServices\IShoppinglistService.cs" />
-    <Compile Include="ApplicationServices\ShoppingListService.cs" />
-    <Compile Include="Infrastructure\IDataContext.cs" />
+    <Compile Include="ApplicationServices\ShoppinglistService.cs" />
     <Compile Include="Infrastructure\IGenericRepository.cs" />
     <Compile Include="Infrastructure\IRepositoryFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />

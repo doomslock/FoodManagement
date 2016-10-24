@@ -11,11 +11,11 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        private readonly IDataContext _context;
+        private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
-        public GenericRepository(IDataContext context, IUnitOfWork unitOfWork)
+        public GenericRepository(DbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
             _unitOfWork = unitOfWork;
