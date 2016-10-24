@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Infrastructure.Dal", "FoodManagement.Infrastructure.Dal\FoodManagement.Infrastructure.Dal.csproj", "{AA37FB17-5E0D-441D-A248-C1A59722AD3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Test", "FoodManagement.Test\FoodManagement.Test.csproj", "{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{AA37FB17-5E0D-441D-A248-C1A59722AD3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA37FB17-5E0D-441D-A248-C1A59722AD3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA37FB17-5E0D-441D-A248-C1A59722AD3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
