@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FoodManagement.Core
+namespace FoodManagement.Infrastructure.Dal
 {
-    public interface IDataContext
+    public class Person
     {
-
     }
 }
