@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAA99AB6-2C25-49DD-92AA-4890A27D8BFD}</ProjectGuid>
+    <ProjectGuid>{B821111C-326A-4F4D-8D00-36F94B8D9EAE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FoodManagement.Core.Model</RootNamespace>
-    <AssemblyName>FoodManagement.Core.Model</AssemblyName>
+    <RootNamespace>FoodManagement.DependencyResolution</RootNamespace>
+    <AssemblyName>FoodManagement.DependencyResolution</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,10 +45,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Family.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="DependencyConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShoppinglistItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoodManagement.Core.Model\FoodManagement.Core.Model.csproj">
+      <Project>{eaa99ab6-2c25-49dd-92aa-4890a27d8bfd}</Project>
+      <Name>FoodManagement.Core.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodManagement.Core\FoodManagement.Core.csproj">
+      <Project>{2d21a984-29f0-4cf2-b55f-b974718bd5e0}</Project>
+      <Name>FoodManagement.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodManagement.Infrastructure.Dal\FoodManagement.Infrastructure.Dal.csproj">
+      <Project>{aa37fb17-5e0d-441d-a248-c1a59722ad3a}</Project>
+      <Name>FoodManagement.Infrastructure.Dal</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
