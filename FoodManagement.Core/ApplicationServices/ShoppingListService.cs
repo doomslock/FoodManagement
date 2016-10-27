@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace FoodManagement.Core
 {
-    public class ShoppingListService : IShoppinglistService
+    public class ShoppinglistService : IShoppinglistService
     {
         private IUnitOfWork _unitOfWork;
 
-        public ShoppingListService(IUnitOfWork uow)
+        public ShoppinglistService(IUnitOfWork uow)
         {
             _unitOfWork = uow;
         }

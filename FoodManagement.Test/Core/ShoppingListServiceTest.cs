@@ -11,7 +11,7 @@ namespace FoodManagement.Test
     [TestClass]
     public class ShoppinglistServiceTest
     {
-        ShoppingListService sls;
+        ShoppinglistService sls;
         Person currentUser;
         [TestInitialize]
         public void Initialize()
@@ -26,7 +26,7 @@ namespace FoodManagement.Test
                 return mockRep.Object;
             });
             currentUser = new Person(Guid.NewGuid()) { Name = "Jens", LastName = "Van den Driessche"};
-            sls = new ShoppingListService(mock.Object);
+            sls = new ShoppinglistService(mock.Object);
         }
 
         [TestMethod]

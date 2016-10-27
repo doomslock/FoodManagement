@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FoodManagement.Core
 {
-    interface IShoppinglistService
+    public interface IShoppinglistService
     {
         void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item);
         IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId);
