@@ -64,7 +64,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ShoppinglistServiceTest.cs" />
+    <Compile Include="Core\ShoppinglistServiceTest.cs" />
+    <Compile Include="Infrastructure\FMDbContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
