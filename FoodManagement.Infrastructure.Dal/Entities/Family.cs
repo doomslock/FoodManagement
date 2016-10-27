@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodManagement.Infrastructure.Dal
 {
+    [Table("Families")]
     public class Family
     {
         [Key]
-        Guid Id { get; set; }
-        string Name { get; set; }
-        public ICollection<ShoppinglistItem> Items { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
     }
 }
