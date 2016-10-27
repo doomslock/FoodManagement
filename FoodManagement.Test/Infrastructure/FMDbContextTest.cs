@@ -15,7 +15,7 @@ namespace FoodManagement.Test.Infrastructure
         //[Ignore]
         public void Initialize()
         {
-            context = new FMDbContext();            
+            context = new FMDbContext();
         }
 
         [TestMethod]
@@ -23,11 +23,11 @@ namespace FoodManagement.Test.Infrastructure
         public void ClearAndFillDatabase()
         {
             FillDbWithTestData();
-            Assert.IsNotNull(context.Families.First());
-            Assert.IsNotNull(context.People.First());
-            Assert.IsNotNull(context.Items.First());
-            Assert.IsNotNull(context.Stores.First());
-            Assert.IsNotNull(context.ShoppinglistItems.First());
+            Assert.IsNotNull(context.Set<Family>().First());
+            Assert.IsNotNull(context.Set<Person>().First());
+            Assert.IsNotNull(context.Set<Item>().First());
+            Assert.IsNotNull(context.Set<Store>().First());
+            Assert.IsNotNull(context.Set<ShoppinglistItem>().First());
         }
 
         private void FillDbWithTestData()
@@ -43,10 +43,10 @@ namespace FoodManagement.Test.Infrastructure
             var family = new Family() { Name = "Van den Driessche", Id = Guid.NewGuid() };
             var sli = new ShoppinglistItem() { Id = Guid.NewGuid(), Amount = 3, BuyAtStoreId = store.Id, ItemId = item.Id, FamilyId = family.Id };
             var user = new Person() { Id = Guid.NewGuid(), Name = "Jens", LastName = "Van den Driessche", Email = "vandendriesschejens@msn.com", Family = family };
-            context.People.Add(user);
-            context.Items.Add(item);
-            context.Stores.Add(store);
-            context.ShoppinglistItems.Add(sli);
+            context.Set<Person>().Add(user);
+            context.Set<Item>().Add(item);
+            context.Set<Store>().Add(store);
+            context.Set<ShoppinglistItem>().Add(sli);
             context.SaveChanges();
         }
     }
