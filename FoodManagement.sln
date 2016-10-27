@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.Test", "FoodManagement.Test\FoodManagement.Test.csproj", "{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodManagement.DependencyResolution", "FoodManagement.DependencyResolution\FoodManagement.DependencyResolution.csproj", "{B821111C-326A-4F4D-8D00-36F94B8D9EAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7CA3B5A-B848-47DF-B079-E09DBBBFFA22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B821111C-326A-4F4D-8D00-36F94B8D9EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B821111C-326A-4F4D-8D00-36F94B8D9EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B821111C-326A-4F4D-8D00-36F94B8D9EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B821111C-326A-4F4D-8D00-36F94B8D9EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
