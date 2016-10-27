@@ -3,8 +3,6 @@ using System;
 using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Linq.Expressions;
 
 namespace FoodManagement.Infrastructure.Dal
@@ -13,14 +11,11 @@ namespace FoodManagement.Infrastructure.Dal
     {
         private readonly DbContext _context;
         private readonly DbSet<TEntity> _dbSet;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public GenericRepository(DbContext context, IUnitOfWork unitOfWork)
+        public GenericRepository(DbContext context)
         {
             _context = context;
-            _unitOfWork = unitOfWork;
 
-            // Temporarily for FakeDbContext, Unit Test and Fakes
             var dbContext = context as DbContext;
 
             if (dbContext != null)
@@ -33,29 +28,63 @@ namespace FoodManagement.Infrastructure.Dal
             }
         }
 
-        public void Delete(TEntity entity)
+        public virtual IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
         {
-            throw new NotImplementedException();
+            IQueryable<TEntity> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return orderBy(query).ToList();
+            }
+            else
+            {
+                return query.ToList();
+            }
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
+        public virtual TEntity GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _dbSet.Find(id);
         }
 
-        public TEntity GetById(Guid id)
+        public virtual void Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Add(entity);
         }
 
-        public void Insert(TEntity entity)
+        public virtual void Delete(object id)
         {
-            throw new NotImplementedException();
+            TEntity entityToDelete = _dbSet.Find(id);
+            Delete(entityToDelete);
         }
 
-        public void Update(TEntity entity)
+        public virtual void Delete(TEntity entityToDelete)
         {
-            throw new NotImplementedException();
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entityToDelete);
+            }
+            _dbSet.Remove(entityToDelete);
+        }
+
+        public virtual void Update(TEntity entityToUpdate)
+        {
+            _dbSet.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
     }
 }
