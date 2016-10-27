@@ -8,7 +8,7 @@ namespace FoodManagement.Core
     {
         void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item);
         IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId);
-        void MarkShoppinglistItemAsBought(Guid Item);
+        void MarkShoppinglistItemAsBought(Guid FamilyId, Guid ItemId);
         void MarkAllShoppinglistItemsAsBought(Guid FamilyId);
     }
 }

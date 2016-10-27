@@ -1,6 +1,7 @@
 ﻿using FoodManagement.Core.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FoodManagement.Core
 {
@@ -15,22 +16,31 @@ namespace FoodManagement.Core
 
         public void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item)
         {
-            throw new NotImplementedException();
+            var family = _unitOfWork.Repository<Family>().Get( f => f.FamilyMembers.First(fm => fm.Id == PersonId) != null).First();
+            family.AddShoppinglistItem(item);
+            _unitOfWork.Repository<Family>().Update(family);
+            _unitOfWork.Save();
         }
 
         public IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.Repository<Family>().Get(f => f.FamilyMembers.First(fm => fm.Id == PersonId) != null).First().Shoppinglist;
         }
 
         public void MarkAllShoppinglistItemsAsBought(Guid FamilyId)
         {
-            throw new NotImplementedException();
+            var familie = _unitOfWork.Repository<Family>().GetById(FamilyId);
+            familie.MarkAllItemsAsBought();
+            _unitOfWork.Repository<Family>().Update(familie);
+            _unitOfWork.Save();
         }
 
-        public void MarkShoppinglistItemAsBought(Guid Item)
+        public void MarkShoppinglistItemAsBought(Guid FamilyId, Guid ItemId)
         {
-            throw new NotImplementedException();
+            var familie = _unitOfWork.Repository<Family>().GetById(FamilyId);
+            familie.MarkItemAsBought(ItemId);
+            _unitOfWork.Repository<Family>().Update(familie);
+            _unitOfWork.Save();
         }
     }
 }
