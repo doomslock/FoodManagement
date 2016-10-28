@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace FoodManagement.Core.Model
 {
-    public class Family
+    public class Family : IModelEntity
     {
         private List<ShoppinglistItem> _shoppinglist;
         public Guid Id { get; private set; }
