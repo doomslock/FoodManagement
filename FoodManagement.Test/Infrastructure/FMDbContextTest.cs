@@ -19,7 +19,7 @@ namespace FoodManagement.Test.Infrastructure
         }
 
         [TestMethod]
-        //[Ignore]
+        [Ignore]
         public void ClearAndFillDatabase()
         {
             FillDbWithTestData();

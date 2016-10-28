@@ -67,12 +67,6 @@ namespace FoodManagement.Infrastructure.Dal
             _dbSet.Add(entity);
         }
 
-        public virtual void Delete(object id)
-        {
-            TEntity entityToDelete = _dbSet.Find(id);
-            Delete(entityToDelete);
-        }
-
         public virtual void Delete(TEntity entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
