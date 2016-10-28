@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FoodManagement.Core.Infrastructure;
 
 namespace FoodManagement.Infrastructure.Dal
 {
     [Table("ShoppinglistItems")]
-    public class ShoppinglistItem
+    public class ShoppinglistItem : IDataEntity
     {
         [Key]
         public Guid Id { get; set; }
