@@ -1,10 +1,6 @@
 ﻿using FoodManagement.Core;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FoodManagement.Core.Infrastructure;
 
 namespace FoodManagement.Infrastructure.Dal
 {
@@ -20,7 +16,7 @@ namespace FoodManagement.Infrastructure.Dal
         }
         public IGenericRepository<TEntity> GetInstance<TEntity>() where TEntity : class
         {
-            return new GenericRepository<TEntity>(_context, _unitOfWork);
+            return new GenericRepository<TEntity>(_context);
         }
     }
 }

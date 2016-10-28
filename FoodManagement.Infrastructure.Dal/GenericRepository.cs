@@ -58,7 +58,8 @@ namespace FoodManagement.Infrastructure.Dal
 
         public virtual TEntity GetById(Guid id)
         {
-            return _dbSet.Find(id);
+            //return Get(e => e.Id == id).First();
+            throw new NotImplementedException();
         }
 
         public virtual void Insert(TEntity entity)
