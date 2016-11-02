@@ -2,22 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using FoodManagement.Core.Model;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace FoodManagement.Infrastructure.Dal
 {
     public class ShoppinglistRepository : GenericRepository<ShoppinglistItem>, IRepository<Core.Model.ShoppinglistItem>
     {
         DbContext _context;
-        IDataMapperFactory _mapperFactory;
-        public ShoppinglistRepository(DbContext context, IDataMapperFactory dataMapperFactory) : base(context, dataMapperFactory)
+        IMapper _mapper;
+        public ShoppinglistRepository(DbContext context, IMapper mapper) : base(context)
         {
             _context = context;
-            _mapperFactory = dataMapperFactory;
+            _mapper = mapper;
         }
 
         public void Delete(Core.Model.ShoppinglistItem entity)
@@ -32,7 +30,7 @@ namespace FoodManagement.Infrastructure.Dal
 
         public new Core.Model.ShoppinglistItem GetById(Guid id)
         {
-            return _mapperFactory.GetInstance<ShoppinglistItem>().Convert(base.GetById(id)) as Core.Model.ShoppinglistItem;
+            return _mapper.Map<Core.Model.ShoppinglistItem>(base.GetById(id));
         }
 
         public void Insert(Core.Model.ShoppinglistItem entity)

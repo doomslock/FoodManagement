@@ -4,19 +4,16 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using FoodManagement.Core.Model;
 
 namespace FoodManagement.Infrastructure.Dal
 {
     public abstract class GenericRepository<TDataEntity> where TDataEntity : class, IDataEntity
     {
         private readonly DbContext _context;
-        private readonly IDataMapperFactory _mapperFactory;
 
-        public GenericRepository(DbContext context, IDataMapperFactory dataMapperFactory)
+        public GenericRepository(DbContext context)
         {
             _context = context;
-            _mapperFactory = dataMapperFactory;
         }
 
         public virtual IEnumerable<TDataEntity> Get(
@@ -24,8 +21,6 @@ namespace FoodManagement.Infrastructure.Dal
             Func<IQueryable<TDataEntity>, IOrderedQueryable<TDataEntity>> orderBy = null,
             string includeProperties = "")
         {
-            _mapperFactory.GetInstance<TDataEntity>();
-
             IQueryable<TDataEntity> query = _context.Set<TDataEntity>();
 
             if (filter != null)

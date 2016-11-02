@@ -1,4 +1,5 @@
-﻿using FoodManagement.Core;
+﻿using AutoMapper;
+using FoodManagement.Core;
 using FoodManagement.Core.Model;
 using System.Data.Entity;
 
@@ -7,23 +8,23 @@ namespace FoodManagement.Infrastructure.Dal
     public class RepositoryFactory : IRepositoryFactory
     {
         private DbContext _context;
-        private IDataMapperFactory _mapperFactory;
+        private IMapper _mapper;
 
-        public RepositoryFactory(DbContext context, IDataMapperFactory dataMapperFactory)
+        public RepositoryFactory(DbContext context, IMapper mapper)
         {
             _context = context;
-            _mapperFactory = dataMapperFactory;
+            _mapper = mapper;
         }
         public IRepository<TEntity> GetInstance<TEntity>() where TEntity: class, IModelEntity
         {
             switch (typeof(TEntity).ToString())
             {
                 case "Core.Model.Family":
-                    return new FamilyRepository(_context, _mapperFactory) as IRepository<TEntity>;
+                    return new FamilyRepository(_context, _mapper) as IRepository<TEntity>;
                 case "Core.Model.Person":
-                    return new PersonRepository(_context, _mapperFactory) as IRepository<TEntity>;
+                    return new PersonRepository(_context, _mapper) as IRepository<TEntity>;
                 case "Core.Model.ShoppinglistItem":
-                    return new ShoppinglistRepository(_context, _mapperFactory) as IRepository<TEntity>;
+                    return new ShoppinglistRepository(_context, _mapper) as IRepository<TEntity>;
                 default:
                     throw new System.ArgumentException();
             }

@@ -2,22 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using FoodManagement.Core.Model;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace FoodManagement.Infrastructure.Dal
 {
     public class PersonRepository : GenericRepository<Person>, IRepository<Core.Model.Person>
     {
         DbContext _context;
-        IDataMapperFactory _mapperFactory;
-        public PersonRepository(DbContext context, IDataMapperFactory dataMapperFactory) : base(context, dataMapperFactory)
+        IMapper _mapper;
+        public PersonRepository(DbContext context, IMapper mapper) : base(context)
         {
             _context = context;
-            _mapperFactory = dataMapperFactory;
+            _mapper = mapper;
         }
 
         public void Delete(Core.Model.Person entity)
@@ -32,7 +30,7 @@ namespace FoodManagement.Infrastructure.Dal
 
         public new Core.Model.Person GetById(Guid id)
         {
-            return _mapperFactory.GetInstance<Person>().Convert(base.GetById(id)) as Core.Model.Person;
+            return _mapper.Map<Core.Model.Person>(base.GetById(id));
         }
 
         public void Insert(Core.Model.Person entity)
