@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using FoodManagement.Core.Infrastructure;
+using FoodManagement.Core;
 
 namespace FoodManagement.Infrastructure.Dal
 {
