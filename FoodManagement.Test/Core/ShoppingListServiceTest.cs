@@ -19,7 +19,7 @@ namespace FoodManagement.Test
         {
             var uowMock = new Mock<IUnitOfWork>();
             var contextMock = new Mock<DbContext>();
-            var repMock = new Mock<GenericRepository<Core.Model.Family>>(contextMock.Object) { CallBase = true };
+            var repMock = new Mock<IRepository<Core.Model.Family>>(contextMock.Object) { CallBase = true };
             var dbSetMock = new Mock<DbSet<Core.Model.Family>>();
             List<Core.Model.Family> familyList = new List<Core.Model.Family>();
             List<Core.Model.Person> people = new List<Core.Model.Person>();

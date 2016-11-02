@@ -1,4 +1,5 @@
-﻿using FoodManagement.Infrastructure.Dal;
+﻿using FoodManagement.Core;
+using FoodManagement.Infrastructure.Dal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -8,19 +9,20 @@ using System.Data.Entity;
 namespace FoodManagement.Test.Infrastructure
 {
     [TestClass]
-    public class GenericRepositoryTest
+    public class ShoppinglistRepositoryTest
     {
-        private GenericRepository<ShoppinglistItem> _rep;
+        private ShoppinglistRepository _rep;
 
         [TestInitialize]
         public void Initialize()
         {
             var context = new Mock<FMDbContext>();
             var dbSet = new Mock<DbSet<ShoppinglistItem>>();
+            var mapperFactory = new Mock<IDataMapperFactory>();
             List<ShoppinglistItem> sliList = new List<ShoppinglistItem>();
             dbSet.Setup(d => d.Add(It.IsAny<ShoppinglistItem>())).Callback((ShoppinglistItem sli) => sliList.Add(sli));
             context.Setup(c => c.Set<ShoppinglistItem>()).Returns(dbSet.Object);
-            _rep = new GenericRepository<ShoppinglistItem>(context.Object);
+            _rep = new ShoppinglistRepository(context.Object, mapperFactory.Object);
         }
 
         [TestMethod]

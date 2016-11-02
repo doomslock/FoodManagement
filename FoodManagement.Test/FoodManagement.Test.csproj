@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="Core\ShoppinglistServiceTest.cs" />
     <Compile Include="Infrastructure\FMDbContextTest.cs" />
-    <Compile Include="Infrastructure\GenericRepositoryTest.cs" />
+    <Compile Include="Infrastructure\ShoppinglistRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
