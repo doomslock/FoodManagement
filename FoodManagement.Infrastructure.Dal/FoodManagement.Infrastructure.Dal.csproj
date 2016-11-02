@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Family.cs" />
+    <Compile Include="ShoppinglistRepository.cs" />
+    <Compile Include="PersonRepository.cs" />
+    <Compile Include="FamilyRepository.cs" />
     <Compile Include="FMDbContext.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="Entities\Item.cs" />

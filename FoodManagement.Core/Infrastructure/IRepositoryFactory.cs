@@ -1,8 +1,10 @@
 ﻿
+using FoodManagement.Core.Model;
+
 namespace FoodManagement.Core
 {
     public interface IRepositoryFactory
     {
-        IGenericRepository<TEntity> GetInstance<TEntity>() where TEntity : class;
+        IRepository<TEntity> GetInstance<TEntity>() where TEntity : class, IModelEntity;
     }
 }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FoodManagement.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace FoodManagement.Core
 {
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class, IModelEntity
     {
         IEnumerable<TEntity> Get(Expression<Func<TEntity,bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");
         TEntity GetById(Guid id);

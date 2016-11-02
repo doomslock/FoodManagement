@@ -1,11 +1,12 @@
-﻿using System.Data;
+﻿using FoodManagement.Core.Model;
+using System.Data;
 
 namespace FoodManagement.Core
 {
     public interface IUnitOfWork
     {
         void Save();
-        IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class;
+        IRepository<TEntity> Repository<TEntity>() where TEntity : class, IModelEntity;
         void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified);
         void Commit();
         void RollBack();

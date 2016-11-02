@@ -1,4 +1,5 @@
 ﻿using FoodManagement.Core;
+using FoodManagement.Core.Model;
 using System;
 using System.Data;
 
@@ -23,7 +24,7 @@ namespace FoodManagement.Infrastructure.Dal
             throw new NotImplementedException();
         }
 
-        public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : class
+        public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IModelEntity
         {
             return _factory.GetInstance<TEntity>();
         }

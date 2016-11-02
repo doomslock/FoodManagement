@@ -11,9 +11,9 @@ namespace FoodManagement.DependencyResolution
         public DependencyConfiguration()
         {
             kernel = new StandardKernel();
-            kernel.Bind<IGenericRepository<Family>>().To<GenericRepository<Family>>();
-            kernel.Bind<IGenericRepository<Person>>().To<GenericRepository<Person>>();
-            kernel.Bind<IGenericRepository<ShoppinglistItem>>().To<GenericRepository<ShoppinglistItem>>();
+            kernel.Bind<IRepository<Core.Model.Family>>().To<FamilyRepository>();
+            kernel.Bind<IRepository<Core.Model.Person>>().To<PersonRepository>();
+            kernel.Bind<IRepository<Core.Model.ShoppinglistItem>>().To<ShoppinglistRepository>();
             kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IShoppinglistService>().To<ShoppinglistService>();

@@ -46,7 +46,7 @@
     <Compile Include="Infrastructure\IDataEntity.cs" />
     <Compile Include="Infrastructure\IDataMapper.cs" />
     <Compile Include="Infrastructure\IDataMapperFactory.cs" />
-    <Compile Include="Infrastructure\IGenericRepository.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IRepositoryFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

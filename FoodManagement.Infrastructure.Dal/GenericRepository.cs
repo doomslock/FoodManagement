@@ -4,36 +4,29 @@ using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TDataEntity> where TDataEntity : class, IDataEntity
     {
         private readonly DbContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        private readonly IDataMapperFactory _mapperFactory;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(DbContext context, IDataMapperFactory dataMapperFactory)
         {
             _context = context;
-
-            var dbContext = context as DbContext;
-
-            if (dbContext != null)
-            {
-                _dbSet = dbContext.Set<TEntity>();
-            }
-            else
-            {
-                throw new ArgumentException($"The parameter '{nameof(context)}' is of the type '{context.GetType()}', it should be convertible to the type '{typeof(DbContext)}'.");
-            }
+            _mapperFactory = dataMapperFactory;
         }
 
-        public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+        public virtual IEnumerable<TDataEntity> Get(
+            Expression<Func<TDataEntity, bool>> filter = null,
+            Func<IQueryable<TDataEntity>, IOrderedQueryable<TDataEntity>> orderBy = null,
             string includeProperties = "")
         {
-            IQueryable<TEntity> query = _dbSet;
+            _mapperFactory.GetInstance<TDataEntity>();
+
+            IQueryable<TDataEntity> query = _context.Set<TDataEntity>();
 
             if (filter != null)
             {
@@ -56,29 +49,28 @@ namespace FoodManagement.Infrastructure.Dal
             }
         }
 
-        public virtual TEntity GetById(Guid id)
+        public virtual TDataEntity GetById(Guid id)
         {
-            //return Get(e => e.Id == id).First();
-            throw new NotImplementedException();
+            return Get(e => e.Id == id, null, "").First();
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual void Insert(TDataEntity entity)
         {
-            _dbSet.Add(entity);
+            _context.Set<TDataEntity>().Add(entity);
         }
 
-        public virtual void Delete(TEntity entityToDelete)
+        public virtual void Delete(TDataEntity entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
-                _dbSet.Attach(entityToDelete);
+                _context.Set<TDataEntity>().Attach(entityToDelete);
             }
-            _dbSet.Remove(entityToDelete);
+            _context.Set<TDataEntity>().Remove(entityToDelete);
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public virtual void Update(TDataEntity entityToUpdate)
         {
-            _dbSet.Attach(entityToUpdate);
+            _context.Set<TDataEntity>().Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
     }
