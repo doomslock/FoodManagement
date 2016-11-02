@@ -20,12 +20,14 @@ namespace FoodManagement.Infrastructure.Dal
 
         public void Delete(Core.Model.ShoppinglistItem entity)
         {
-            throw new NotImplementedException();
+            Delete(_mapper.Map<ShoppinglistItem>(entity));
         }
 
         public IEnumerable<Core.Model.ShoppinglistItem> Get(Expression<Func<Core.Model.ShoppinglistItem, bool>> filter = null, Func<IQueryable<Core.Model.ShoppinglistItem>, IOrderedQueryable<Core.Model.ShoppinglistItem>> orderBy = null, string includeProperties = "")
         {
-            throw new NotImplementedException();
+            return base.Get(_mapper.Map<Expression<Func<ShoppinglistItem, bool>>>(filter),
+                _mapper.Map<Func<IQueryable<ShoppinglistItem>, IOrderedQueryable<ShoppinglistItem>>>(orderBy), 
+                includeProperties).Select(sli => _mapper.Map<Core.Model.ShoppinglistItem>(sli));
         }
 
         public new Core.Model.ShoppinglistItem GetById(Guid id)
@@ -35,12 +37,12 @@ namespace FoodManagement.Infrastructure.Dal
 
         public void Insert(Core.Model.ShoppinglistItem entity)
         {
-            throw new NotImplementedException();
+            base.Insert(_mapper.Map<ShoppinglistItem>(entity));
         }
 
         public void Update(Core.Model.ShoppinglistItem entity)
         {
-            throw new NotImplementedException();
+            base.Update(_mapper.Map<ShoppinglistItem>(entity));
         }
     }
 }

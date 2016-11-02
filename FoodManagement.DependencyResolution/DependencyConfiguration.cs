@@ -32,6 +32,7 @@ namespace FoodManagement.DependencyResolution
         {
             List<Profile> profiles = new List<Profile>();
 
+            //TODO: add profiles
 
             return profiles;
         }
