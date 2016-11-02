@@ -1,5 +1,5 @@
-﻿using FoodManagement.Core.Model;
-namespace FoodManagement.Core.Infrastructure
+﻿
+namespace FoodManagement.Core
 {
     public interface IDataMapperFactory
     {
