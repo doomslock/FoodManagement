@@ -32,7 +32,7 @@ namespace FoodManagement.DependencyResolution
         {
             List<Profile> profiles = new List<Profile>();
 
-            //TODO: add profiles
+            profiles.Add(new newProfile());
 
             return profiles;
         }
@@ -40,6 +40,22 @@ namespace FoodManagement.DependencyResolution
         public TService GetInstance<TService>()
         {
             return kernel.Get<TService>();
+        }
+
+        internal class newProfile : Profile
+        {
+            protected override void Configure()
+            {
+                CreateMap<Core.Model.Family, Family>();
+                CreateMap<Family, Core.Model.Family>();
+
+                CreateMap<Core.Model.Person, Person>();
+                CreateMap<Person, Core.Model.Person>();
+
+                CreateMap<Core.Model.ShoppinglistItem, ShoppinglistItem>();
+                CreateMap<ShoppinglistItem, Core.Model.ShoppinglistItem>();
+            }
+            
         }
     }
 }
