@@ -62,7 +62,7 @@ namespace FoodManagement.Test
         public void MarkAllShoppinglistItemsAsBoughtTest()
         {
             slService.MarkAllShoppinglistItemsAsBought(currentUser.Id);
-            Assert.AreEqual(slService.GetFamilyShoppinglist(currentUser.Id).Count(), 0);
+            Assert.AreEqual(0, slService.GetFamilyShoppinglist(currentUser.Id).Count());
         }
     }
 }

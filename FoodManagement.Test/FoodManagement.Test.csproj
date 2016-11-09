@@ -86,6 +86,10 @@
       <Project>{2d21a984-29f0-4cf2-b55f-b974718bd5e0}</Project>
       <Name>FoodManagement.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FoodManagement.DependencyResolution\FoodManagement.DependencyResolution.csproj">
+      <Project>{B821111C-326A-4F4D-8D00-36F94B8D9EAE}</Project>
+      <Name>FoodManagement.DependencyResolution</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FoodManagement.Infrastructure.Dal\FoodManagement.Infrastructure.Dal.csproj">
       <Project>{aa37fb17-5e0d-441d-a248-c1a59722ad3a}</Project>
       <Name>FoodManagement.Infrastructure.Dal</Name>
