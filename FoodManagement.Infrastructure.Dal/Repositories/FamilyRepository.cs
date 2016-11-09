@@ -25,12 +25,15 @@ namespace FoodManagement.Infrastructure.Dal
 
         public IEnumerable<Core.Model.Family> Get(Expression<Func<Core.Model.Family, bool>> filter = null, Func<IQueryable<Core.Model.Family>, IOrderedQueryable<Core.Model.Family>> orderBy = null, string includeProperties = "")
         {
-            throw new NotImplementedException();
+            Expression<Func<Family, bool>> filt = _mapper.Map<Expression<Func<Family, bool>>>(filter);
+            Func<IQueryable<Family>, IOrderedQueryable<Family>> ord = _mapper.Map<Func<IQueryable<Family>, IOrderedQueryable<Family>>>(orderBy);
+            return base.Get(filt, ord, includeProperties).Select(f => _mapper.Map<Core.Model.Family>(f));
         }
 
-        public new Core.Model.Family GetById(Guid id)
+        public new Core.Model.Family GetById(Guid id, string includeProperties = "")
         {
-            return _mapper.Map<Core.Model.Family>(base.GetById(id));
+            var a = base.GetById(id, includeProperties);
+            return _mapper.Map<Core.Model.Family>(a);
         }
 
         public void Insert(Core.Model.Family entity)

@@ -22,7 +22,8 @@ namespace FoodManagement.Infrastructure.Dal
             string includeProperties = "")
         {
             IQueryable<TDataEntity> query = _context.Set<TDataEntity>();
-
+            var a = query.ToList();
+            var b = _context.Set<TDataEntity>().ToList();
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -44,9 +45,9 @@ namespace FoodManagement.Infrastructure.Dal
             }
         }
 
-        public virtual TDataEntity GetById(Guid id)
+        public virtual TDataEntity GetById(Guid id, string includeProperties = "")
         {
-            return Get(e => e.Id == id, null, "").First();
+            return Get(e => e.Id == id, null, includeProperties).First();
         }
 
         public virtual void Insert(TDataEntity entity)

@@ -30,9 +30,9 @@ namespace FoodManagement.Infrastructure.Dal
                 includeProperties).Select(sli => _mapper.Map<Core.Model.ShoppinglistItem>(sli));
         }
 
-        public new Core.Model.ShoppinglistItem GetById(Guid id)
+        public new Core.Model.ShoppinglistItem GetById(Guid id, string includeProperties = "")
         {
-            return _mapper.Map<Core.Model.ShoppinglistItem>(base.GetById(id));
+            return _mapper.Map<Core.Model.ShoppinglistItem>(base.GetById(id, includeProperties));
         }
 
         public void Insert(Core.Model.ShoppinglistItem entity)

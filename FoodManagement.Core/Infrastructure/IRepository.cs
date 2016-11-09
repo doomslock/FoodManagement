@@ -9,7 +9,7 @@ namespace FoodManagement.Core
     public interface IRepository<TEntity> where TEntity : class, IModelEntity
     {
         IEnumerable<TEntity> Get(Expression<Func<TEntity,bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");
-        TEntity GetById(Guid id);
+        TEntity GetById(Guid id, string includeProperties = "");
         void Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
