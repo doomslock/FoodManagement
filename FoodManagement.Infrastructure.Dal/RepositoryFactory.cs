@@ -19,11 +19,11 @@ namespace FoodManagement.Infrastructure.Dal
         {
             switch (typeof(TEntity).ToString())
             {
-                case "Core.Model.Family":
+                case "FoodManagement.Core.Model.Family":
                     return new FamilyRepository(_context, _mapper) as IRepository<TEntity>;
-                case "Core.Model.Person":
+                case "FoodManagement.Core.Model.Person":
                     return new PersonRepository(_context, _mapper) as IRepository<TEntity>;
-                case "Core.Model.ShoppinglistItem":
+                case "FoodManagement.Core.Model.ShoppinglistItem":
                     return new ShoppinglistRepository(_context, _mapper) as IRepository<TEntity>;
                 default:
                     throw new System.ArgumentException();
