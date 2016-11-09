@@ -24,7 +24,8 @@ namespace FoodManagement.Core
 
         public IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId)
         {
-            return _unitOfWork.Repository<Family>().Get(f => f.FamilyMembers.First(fm => fm.Id == PersonId) != null).First().Shoppinglist;
+            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
+            return _unitOfWork.Repository<Family>().GetById(person.FamilyId, "Shoppinglist, Shoppinglist.Item").Shoppinglist;
         }
 
         public void MarkAllShoppinglistItemsAsBought(Guid FamilyId)
