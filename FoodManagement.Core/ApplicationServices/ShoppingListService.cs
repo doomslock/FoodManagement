@@ -16,7 +16,8 @@ namespace FoodManagement.Core
 
         public void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item)
         {
-            var family = _unitOfWork.Repository<Family>().Get( f => f.FamilyMembers.First(fm => fm.Id == PersonId) != null).First();
+            var person = _unitOfWork.Repository<Person>().GetById(PersonId, "");
+            var family = _unitOfWork.Repository<Family>().GetById(person.FamilyId, "Shoppinglist, Shoppinglist.Item");
             family.AddShoppinglistItem(item);
             _unitOfWork.Repository<Family>().Update(family);
             _unitOfWork.Save();
@@ -28,17 +29,19 @@ namespace FoodManagement.Core
             return _unitOfWork.Repository<Family>().GetById(person.FamilyId, "Shoppinglist, Shoppinglist.Item").Shoppinglist;
         }
 
-        public void MarkAllShoppinglistItemsAsBought(Guid FamilyId)
+        public void MarkAllShoppinglistItemsAsBought(Guid PersonId)
         {
-            var familie = _unitOfWork.Repository<Family>().GetById(FamilyId);
+            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
+            var familie = _unitOfWork.Repository<Family>().GetById(person.FamilyId);
             familie.MarkAllItemsAsBought();
             _unitOfWork.Repository<Family>().Update(familie);
             _unitOfWork.Save();
         }
 
-        public void MarkShoppinglistItemAsBought(Guid FamilyId, Guid ItemId)
+        public void MarkShoppinglistItemAsBought(Guid PersonId, Guid ItemId)
         {
-            var familie = _unitOfWork.Repository<Family>().GetById(FamilyId);
+            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
+            var familie = _unitOfWork.Repository<Family>().GetById(person.FamilyId);
             familie.MarkItemAsBought(ItemId);
             _unitOfWork.Repository<Family>().Update(familie);
             _unitOfWork.Save();
