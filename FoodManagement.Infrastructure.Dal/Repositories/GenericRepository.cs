@@ -11,9 +11,9 @@ namespace FoodManagement.Infrastructure.Dal
     {
         private readonly DbContext _context;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(IDataContext context)
         {
-            _context = context;
+            _context = context as DbContext;
         }
 
         public virtual IEnumerable<TDataEntity> Get(

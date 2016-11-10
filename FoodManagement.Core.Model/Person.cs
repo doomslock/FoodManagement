@@ -9,6 +9,9 @@ namespace FoodManagement.Core.Model
         public string LastName { get; set; }
         public string Email { get; set; }
         public Guid FamilyId { get; private set; }
+
+        public ObjectState ObjectState { get; set; }
+
         public Person(Guid id, Guid familyId, string name, string lastName, string email)
         {
             Id = id;

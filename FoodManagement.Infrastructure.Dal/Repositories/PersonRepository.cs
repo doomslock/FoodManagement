@@ -10,17 +10,15 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class PersonRepository : GenericRepository<Person>, IRepository<Core.Model.Person>
     {
-        DbContext _context;
         IMapper _mapper;
-        public PersonRepository(DbContext context, IMapper mapper) : base(context)
+        public PersonRepository(IDataContext context, IMapper mapper) : base(context)
         {
-            _context = context;
             _mapper = mapper;
         }
 
         public void Delete(Core.Model.Person entity)
         {
-            throw new NotImplementedException();
+            Delete(_mapper.Map<Person>(entity));
         }
 
         public IEnumerable<Core.Model.Person> Get(Expression<Func<Core.Model.Person, bool>> filter = null, Func<IQueryable<Core.Model.Person>, IOrderedQueryable<Core.Model.Person>> orderBy = null, string includeProperties = "")
@@ -37,12 +35,12 @@ namespace FoodManagement.Infrastructure.Dal
 
         public void Insert(Core.Model.Person entity)
         {
-            throw new NotImplementedException();
+            base.Insert(_mapper.Map<Person>(entity));
         }
 
         public void Update(Core.Model.Person entity)
         {
-            throw new NotImplementedException();
+            base.Update(_mapper.Map<Person>(entity));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FoodManagement.DependencyResolution
         {
             kernel = new StandardKernel();
 
-            kernel.Bind<DbContext>().To<FMDbContext>();
+            kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
             kernel.Bind<IRepository<Core.Model.Family>>().To<FamilyRepository>();
             kernel.Bind<IRepository<Core.Model.Person>>().To<PersonRepository>();
             kernel.Bind<IRepository<Core.Model.ShoppinglistItem>>().To<ShoppinglistRepository>();

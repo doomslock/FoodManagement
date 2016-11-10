@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using FoodManagement.Core;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.Infrastructure.Dal
 {
@@ -16,5 +17,7 @@ namespace FoodManagement.Infrastructure.Dal
         public Item Item { get; set; }
         public Guid BuyAtStoreId { get; set; }
         public Store BuyAtStore { get; set; }
+        [NotMapped]
+        public ObjectState ObjectState { get; set; }
     }
 }

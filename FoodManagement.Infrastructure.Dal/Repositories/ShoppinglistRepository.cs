@@ -10,11 +10,9 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class ShoppinglistRepository : GenericRepository<ShoppinglistItem>, IRepository<Core.Model.ShoppinglistItem>
     {
-        DbContext _context;
         IMapper _mapper;
-        public ShoppinglistRepository(DbContext context, IMapper mapper) : base(context)
+        public ShoppinglistRepository(IDataContext context, IMapper mapper) : base(context)
         {
-            _context = context;
             _mapper = mapper;
         }
 

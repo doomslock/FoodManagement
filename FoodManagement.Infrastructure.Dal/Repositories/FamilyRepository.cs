@@ -10,17 +10,15 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class FamilyRepository : GenericRepository<Family>, IRepository<Core.Model.Family>
     {
-        DbContext _context;
         IMapper _mapper;
-        public FamilyRepository(DbContext context, IMapper mapper) : base(context)
+        public FamilyRepository(IDataContext context, IMapper mapper) : base(context)
         {
-            _context = context;
             _mapper = mapper;
         }
 
         public void Delete(Core.Model.Family entity)
         {
-            throw new NotImplementedException();
+            Delete(_mapper.Map<Family>(entity));
         }
 
         public IEnumerable<Core.Model.Family> Get(Expression<Func<Core.Model.Family, bool>> filter = null, Func<IQueryable<Core.Model.Family>, IOrderedQueryable<Core.Model.Family>> orderBy = null, string includeProperties = "")
@@ -38,12 +36,12 @@ namespace FoodManagement.Infrastructure.Dal
 
         public void Insert(Core.Model.Family entity)
         {
-            throw new NotImplementedException();
+            base.Insert(_mapper.Map<Family>(entity));
         }
 
         public void Update(Core.Model.Family entity)
         {
-            throw new NotImplementedException();
+            base.Update(_mapper.Map<Family>(entity));
         }
     }
 }

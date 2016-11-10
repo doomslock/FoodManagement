@@ -1,4 +1,5 @@
 ﻿using FoodManagement.Core;
+using FoodManagement.Core.Model;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,5 +16,7 @@ namespace FoodManagement.Infrastructure.Dal
         public string Email { get; set; }
         public Guid FamilyId { get; set; }
         public Family Family { get; set; }
+        [NotMapped]
+        public ObjectState ObjectState { get; set; }
     }
 }

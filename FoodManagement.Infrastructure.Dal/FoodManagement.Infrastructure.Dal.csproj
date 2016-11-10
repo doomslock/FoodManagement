@@ -66,6 +66,7 @@
     <Compile Include="RepositoryFactory.cs" />
     <Compile Include="Entities\ShoppinglistItem.cs" />
     <Compile Include="Entities\Store.cs" />
+    <Compile Include="StateHelper.cs" />
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +80,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

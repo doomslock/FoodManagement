@@ -11,6 +11,9 @@ namespace FoodManagement.Core.Model
         public string Name { get; set; }
         public IEnumerable<Person> FamilyMembers { get; }
         public IEnumerable<ShoppinglistItem> Shoppinglist { get { return _shoppinglist; } }
+
+        public ObjectState ObjectState { get; set; }
+
         public Family(Guid id, string name, List<ShoppinglistItem> shoppinglist, List<Person> familyMembers)
         {
             Id = id;

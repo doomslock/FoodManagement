@@ -10,6 +10,8 @@ namespace FoodManagement.Core.Model
         public string Description { get; set; }
         public int Amount { get; set; }
 
+        public ObjectState ObjectState { get; set; }
+
         public ShoppinglistItem(Guid id, string name, int amount)
         {
             Id = id;
