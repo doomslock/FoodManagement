@@ -7,6 +7,8 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class FMDbContext : DbContext, IDataContext
     {
+        private bool _disposed;
+
         public FMDbContext() : base(@"Data Source=(localdb)\v11.0;Initial Catalog=FoodManagement;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
             Configuration.LazyLoadingEnabled = false;
@@ -37,6 +39,25 @@ namespace FoodManagement.Infrastructure.Dal
             {
                 ((IObjectState)dbEntityEntry.Entity).ObjectState = StateHelper.ConvertState(dbEntityEntry.State);
             }
+        }
+
+        protected new void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // free other managed objects that implement
+                    // IDisposable only
+                }
+
+                // release any unmanaged objects
+                // set object references to null
+
+                _disposed = true;
+            }
+
+            base.Dispose(disposing);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace FoodManagement.Infrastructure.Dal
         private IDataContext _dataContext;
         private ObjectContext _objectContext;
         private DbTransaction _transaction;
+        private bool _disposed;
 
         public UnitOfWork(IRepositoryFactory factory, IDataContext dataContext)
         {
@@ -51,6 +52,42 @@ namespace FoodManagement.Infrastructure.Dal
         public void Save()
         {
             _dataContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+
+                try
+                {
+                    if (_objectContext != null && _objectContext.Connection.State == ConnectionState.Open)
+                    {
+                        _objectContext.Connection.Close();
+                    }
+                }
+                catch (ObjectDisposedException)
+                {
+                    // do nothing, the objectContext has already been disposed
+                }
+
+                if (_dataContext != null)
+                {
+                    _dataContext.Dispose();
+                    _dataContext = null;
+                }
+            }
+
+            _disposed = true;
         }
     }
 }
