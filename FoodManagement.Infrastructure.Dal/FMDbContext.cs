@@ -16,7 +16,7 @@ namespace FoodManagement.Infrastructure.Dal
         }
         public DbSet<Person> People { get; set; }
         public DbSet<Family> Families { get; set; }
-        public DbSet<ShoppinglistItem> ShoppinglistItems { get; set; }
+        public DbSet<ShoppingListItem> ShoppingListItems { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Store> Stores { get; set; }
 

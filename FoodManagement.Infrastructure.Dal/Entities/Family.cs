@@ -13,8 +13,8 @@ namespace FoodManagement.Infrastructure.Dal
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Person> FamilyMembers { get; set; }
-        public ICollection<ShoppinglistItem> Shoppinglist { get; set; }
+        public ICollection<Person> FamilyMembers { get; }
+        public ICollection<ShoppingListItem> ShoppingList { get; }
         [NotMapped]
         public ObjectState ObjectState { get; set; }
     }

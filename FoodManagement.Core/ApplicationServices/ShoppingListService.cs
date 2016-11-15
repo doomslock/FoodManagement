@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace FoodManagement.Core
 {
-    public class ShoppinglistService : IShoppinglistService
+    public class ShoppinglistService : IShoppingListService
     {
         private IUnitOfWork _unitOfWork;
 
@@ -14,35 +14,35 @@ namespace FoodManagement.Core
             _unitOfWork = uow;
         }
 
-        public void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item)
+        public void AddItemToFamilyShoppingList(Guid personId, ShoppingListItem item)
         {
-            var person = _unitOfWork.Repository<Person>().GetById(PersonId, "");
-            var family = _unitOfWork.Repository<Family>().GetById(person.FamilyId, "Shoppinglist, Shoppinglist.Item");
-            family.AddShoppinglistItem(item);
+            var person = _unitOfWork.Repository<Person>().SelectById(personId, "");
+            var family = _unitOfWork.Repository<Family>().SelectById(person.FamilyId, "Shoppinglist, Shoppinglist.Item");
+            family.AddShoppingListItem(item);
             _unitOfWork.Repository<Family>().Update(family);
             _unitOfWork.Save();
         }
 
-        public IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId)
+        public IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid personId)
         {
-            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
-            return _unitOfWork.Repository<Family>().GetById(person.FamilyId, "Shoppinglist, Shoppinglist.Item").Shoppinglist;
+            var person = _unitOfWork.Repository<Person>().SelectById(personId);
+            return _unitOfWork.Repository<Family>().SelectById(person.FamilyId, "Shoppinglist, Shoppinglist.Item").ShoppingList;
         }
 
-        public void MarkAllShoppinglistItemsAsBought(Guid PersonId)
+        public void MarkAllShoppingListItemsAsBought(Guid personId)
         {
-            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
-            var familie = _unitOfWork.Repository<Family>().GetById(person.FamilyId);
+            var person = _unitOfWork.Repository<Person>().SelectById(personId);
+            var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
             familie.MarkAllItemsAsBought();
             _unitOfWork.Repository<Family>().Update(familie);
             _unitOfWork.Save();
         }
 
-        public void MarkShoppinglistItemAsBought(Guid PersonId, Guid ItemId)
+        public void MarkShoppingListItemAsBought(Guid personId, Guid itemId)
         {
-            var person = _unitOfWork.Repository<Person>().GetById(PersonId);
-            var familie = _unitOfWork.Repository<Family>().GetById(person.FamilyId);
-            familie.MarkItemAsBought(ItemId);
+            var person = _unitOfWork.Repository<Person>().SelectById(personId);
+            var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
+            familie.MarkItemAsBought(itemId);
             _unitOfWork.Repository<Family>().Update(familie);
             _unitOfWork.Save();
         }

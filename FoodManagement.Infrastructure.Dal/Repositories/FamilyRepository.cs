@@ -21,16 +21,16 @@ namespace FoodManagement.Infrastructure.Dal
             Delete(_mapper.Map<Family>(entity));
         }
 
-        public IEnumerable<Core.Model.Family> Get(Expression<Func<Core.Model.Family, bool>> filter = null, Func<IQueryable<Core.Model.Family>, IOrderedQueryable<Core.Model.Family>> orderBy = null, string includeProperties = "")
+        public IEnumerable<Core.Model.Family> Select(Expression<Func<Core.Model.Family, bool>> filter = null, Func<IQueryable<Core.Model.Family>, IOrderedQueryable<Core.Model.Family>> orderBy = null, string includeProperties = "")
         {
             Expression<Func<Family, bool>> filt = _mapper.Map<Expression<Func<Family, bool>>>(filter);
             Func<IQueryable<Family>, IOrderedQueryable<Family>> ord = _mapper.Map<Func<IQueryable<Family>, IOrderedQueryable<Family>>>(orderBy);
-            return base.Get(filt, ord, includeProperties).Select(f => _mapper.Map<Core.Model.Family>(f));
+            return base.Select(filt, ord, includeProperties).Select(f => _mapper.Map<Core.Model.Family>(f));
         }
 
-        public new Core.Model.Family GetById(Guid id, string includeProperties = "")
+        public new Core.Model.Family SelectById(Guid id, string includeProperties = "")
         {
-            var a = base.GetById(id, includeProperties);
+            var a = base.SelectById(id, includeProperties);
             return _mapper.Map<Core.Model.Family>(a);
         }
 

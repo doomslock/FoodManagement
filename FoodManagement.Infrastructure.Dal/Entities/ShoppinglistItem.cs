@@ -7,7 +7,7 @@ using FoodManagement.Core.Model;
 namespace FoodManagement.Infrastructure.Dal
 {
     [Table("ShoppinglistItems")]
-    public class ShoppinglistItem : IDataEntity
+    public class ShoppingListItem : IDataEntity
     {
         [Key]
         public Guid Id { get; set; }

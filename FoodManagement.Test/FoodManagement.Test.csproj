@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,9 +74,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Core\ShoppinglistServiceTest.cs" />
+    <Compile Include="Core\ShoppingListServiceTest.cs" />
     <Compile Include="Infrastructure\FMDbContextTest.cs" />
-    <Compile Include="Infrastructure\ShoppinglistRepositoryTest.cs" />
+    <Compile Include="Infrastructure\ShoppingListRepositoryTest.cs" />
     <Compile Include="Infrastructure\UnitOfWorkTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

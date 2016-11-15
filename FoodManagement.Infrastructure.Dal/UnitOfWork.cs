@@ -43,7 +43,7 @@ namespace FoodManagement.Infrastructure.Dal
             _transaction.Commit();
         }
 
-        public void RollBack()
+        public void Rollback()
         {
             _transaction.Rollback();
             _dataContext.SyncObjectsStatePostCommit();
@@ -60,7 +60,7 @@ namespace FoodManagement.Infrastructure.Dal
             GC.SuppressFinalize(this);
         }
 
-        public virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
                 return;

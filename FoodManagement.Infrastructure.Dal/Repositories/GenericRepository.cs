@@ -11,12 +11,12 @@ namespace FoodManagement.Infrastructure.Dal
     {
         private readonly DbContext _context;
 
-        public GenericRepository(IDataContext context)
+        protected GenericRepository(IDataContext context)
         {
             _context = context as DbContext;
         }
 
-        public virtual IEnumerable<TDataEntity> Get(
+        public virtual IEnumerable<TDataEntity> Select(
             Expression<Func<TDataEntity, bool>> filter = null,
             Func<IQueryable<TDataEntity>, IOrderedQueryable<TDataEntity>> orderBy = null,
             string includeProperties = "")
@@ -28,8 +28,7 @@ namespace FoodManagement.Infrastructure.Dal
                 query = query.Where(filter);
             }
 
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);
             }
@@ -44,9 +43,9 @@ namespace FoodManagement.Infrastructure.Dal
             }
         }
 
-        public virtual TDataEntity GetById(Guid id, string includeProperties = "")
+        public virtual TDataEntity SelectById(Guid id, string includeProperties = "")
         {
-            return Get(e => e.Id == id, null, includeProperties).First();
+            return Select(e => e.Id == id, null, includeProperties).First();
         }
 
         public virtual void Insert(TDataEntity entity)

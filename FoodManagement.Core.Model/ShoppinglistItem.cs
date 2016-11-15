@@ -2,7 +2,7 @@
 
 namespace FoodManagement.Core.Model
 {
-    public class ShoppinglistItem : IModelEntity
+    public class ShoppingListItem : IModelEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +12,7 @@ namespace FoodManagement.Core.Model
 
         public ObjectState ObjectState { get; set; }
 
-        public ShoppinglistItem(Guid id, string name, int amount)
+        public ShoppingListItem(Guid id, string name, int amount)
         {
             Id = id;
             Name = name;

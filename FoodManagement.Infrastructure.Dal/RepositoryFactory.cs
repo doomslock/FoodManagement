@@ -22,9 +22,9 @@ namespace FoodManagement.Infrastructure.Dal
                 case "FoodManagement.Core.Model.Person":
                     return new PersonRepository(context, _mapper) as IRepository<TEntity>;
                 case "FoodManagement.Core.Model.ShoppinglistItem":
-                    return new ShoppinglistRepository(context, _mapper) as IRepository<TEntity>;
+                    return new ShoppingListRepository(context, _mapper) as IRepository<TEntity>;
                 default:
-                    throw new System.ArgumentException();
+                    throw new System.NotSupportedException($"The provided generic type argument {nameof(TEntity)} is of the type {typeof(TEntity)} which is an unsupported type in this method.");
             }
         }
     }

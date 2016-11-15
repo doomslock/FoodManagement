@@ -8,39 +8,39 @@ using AutoMapper;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class ShoppinglistRepository : GenericRepository<ShoppinglistItem>, IRepository<Core.Model.ShoppinglistItem>
+    public class ShoppingListRepository : GenericRepository<ShoppingListItem>, IRepository<Core.Model.ShoppingListItem>
     {
         IMapper _mapper;
-        public ShoppinglistRepository(IDataContext context, IMapper mapper) : base(context)
+        public ShoppingListRepository(IDataContext context, IMapper mapper) : base(context)
         {
             _mapper = mapper;
         }
 
-        public void Delete(Core.Model.ShoppinglistItem entity)
+        public void Delete(Core.Model.ShoppingListItem entity)
         {
-            Delete(_mapper.Map<ShoppinglistItem>(entity));
+            Delete(_mapper.Map<ShoppingListItem>(entity));
         }
 
-        public IEnumerable<Core.Model.ShoppinglistItem> Get(Expression<Func<Core.Model.ShoppinglistItem, bool>> filter = null, Func<IQueryable<Core.Model.ShoppinglistItem>, IOrderedQueryable<Core.Model.ShoppinglistItem>> orderBy = null, string includeProperties = "")
+        public IEnumerable<Core.Model.ShoppingListItem> Select(Expression<Func<Core.Model.ShoppingListItem, bool>> filter = null, Func<IQueryable<Core.Model.ShoppingListItem>, IOrderedQueryable<Core.Model.ShoppingListItem>> orderBy = null, string includeProperties = "")
         {
-            return base.Get(_mapper.Map<Expression<Func<ShoppinglistItem, bool>>>(filter),
-                _mapper.Map<Func<IQueryable<ShoppinglistItem>, IOrderedQueryable<ShoppinglistItem>>>(orderBy), 
-                includeProperties).Select(sli => _mapper.Map<Core.Model.ShoppinglistItem>(sli));
+            return base.Select(_mapper.Map<Expression<Func<ShoppingListItem, bool>>>(filter),
+                _mapper.Map<Func<IQueryable<ShoppingListItem>, IOrderedQueryable<ShoppingListItem>>>(orderBy), 
+                includeProperties).Select(sli => _mapper.Map<Core.Model.ShoppingListItem>(sli));
         }
 
-        public new Core.Model.ShoppinglistItem GetById(Guid id, string includeProperties = "")
+        public new Core.Model.ShoppingListItem SelectById(Guid id, string includeProperties = "")
         {
-            return _mapper.Map<Core.Model.ShoppinglistItem>(base.GetById(id, includeProperties));
+            return _mapper.Map<Core.Model.ShoppingListItem>(base.SelectById(id, includeProperties));
         }
 
-        public void Insert(Core.Model.ShoppinglistItem entity)
+        public void Insert(Core.Model.ShoppingListItem entity)
         {
-            base.Insert(_mapper.Map<ShoppinglistItem>(entity));
+            base.Insert(_mapper.Map<ShoppingListItem>(entity));
         }
 
-        public void Update(Core.Model.ShoppinglistItem entity)
+        public void Update(Core.Model.ShoppingListItem entity)
         {
-            base.Update(_mapper.Map<ShoppinglistItem>(entity));
+            base.Update(_mapper.Map<ShoppingListItem>(entity));
         }
     }
 }

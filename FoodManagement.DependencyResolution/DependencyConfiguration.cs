@@ -18,10 +18,10 @@ namespace FoodManagement.DependencyResolution
             kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
             kernel.Bind<IRepository<Core.Model.Family>>().To<FamilyRepository>();
             kernel.Bind<IRepository<Core.Model.Person>>().To<PersonRepository>();
-            kernel.Bind<IRepository<Core.Model.ShoppinglistItem>>().To<ShoppinglistRepository>();
+            kernel.Bind<IRepository<Core.Model.ShoppingListItem>>().To<ShoppingListRepository>();
             kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IShoppinglistService>().To<ShoppinglistService>();
+            kernel.Bind<IShoppingListService>().To<ShoppinglistService>();
             kernel.Bind<IMapper>().ToConstant(
                 new MapperConfiguration(c =>
                 {
@@ -35,7 +35,7 @@ namespace FoodManagement.DependencyResolution
             return kernel.Get<TService>();
         }
 
-        private IEnumerable<Profile> MapperProfiles()
+        private static IEnumerable<Profile> MapperProfiles()
         {
             List<Profile> profiles = new List<Profile>();
 
@@ -53,8 +53,8 @@ namespace FoodManagement.DependencyResolution
                 CreateMap<Core.Model.Person, Person>();
                 CreateMap<Person, Core.Model.Person>();
 
-                CreateMap<Core.Model.ShoppinglistItem, ShoppinglistItem>();
-                CreateMap<ShoppinglistItem, Core.Model.ShoppinglistItem>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Item.Name)).ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Item.Description)).ConstructUsing(x => new Core.Model.ShoppinglistItem(x.Id, x.Item.Name, x.Amount));
+                CreateMap<Core.Model.ShoppingListItem, ShoppingListItem>();
+                CreateMap<ShoppingListItem, Core.Model.ShoppingListItem>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Item.Name)).ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Item.Description)).ConstructUsing(x => new Core.Model.ShoppingListItem(x.Id, x.Item.Name, x.Amount));
             }
 
         }

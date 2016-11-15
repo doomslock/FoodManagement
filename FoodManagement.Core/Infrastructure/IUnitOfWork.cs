@@ -10,6 +10,6 @@ namespace FoodManagement.Core
         IRepository<TEntity> Repository<TEntity>() where TEntity : class, IModelEntity;
         void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified);
         void Commit();
-        void RollBack();
+        void Rollback();
     }
 }

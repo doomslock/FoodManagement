@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace FoodManagement.Core
 {
-    public interface IShoppinglistService
+    public interface IShoppingListService
     {
-        void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item);
-        IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId);
-        void MarkShoppinglistItemAsBought(Guid FamilyId, Guid ItemId);
-        void MarkAllShoppinglistItemsAsBought(Guid FamilyId);
+        void AddItemToFamilyShoppingList(Guid personId, ShoppingListItem item);
+        IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid personId);
+        void MarkShoppingListItemAsBought(Guid personId, Guid itemId);
+        void MarkAllShoppingListItemsAsBought(Guid personId);
     }
 }

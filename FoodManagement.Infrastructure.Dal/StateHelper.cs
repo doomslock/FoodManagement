@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class StateHelper
+    public static class StateHelper
     {
         public static EntityState ConvertState(ObjectState state)
         {

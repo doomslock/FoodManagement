@@ -21,16 +21,16 @@ namespace FoodManagement.Infrastructure.Dal
             Delete(_mapper.Map<Person>(entity));
         }
 
-        public IEnumerable<Core.Model.Person> Get(Expression<Func<Core.Model.Person, bool>> filter = null, Func<IQueryable<Core.Model.Person>, IOrderedQueryable<Core.Model.Person>> orderBy = null, string includeProperties = "")
+        public IEnumerable<Core.Model.Person> Select(Expression<Func<Core.Model.Person, bool>> filter = null, Func<IQueryable<Core.Model.Person>, IOrderedQueryable<Core.Model.Person>> orderBy = null, string includeProperties = "")
         {
             Expression<Func<Person, bool>> filt = _mapper.Map<Expression<Func<Person, bool>>>(filter);
             Func<IQueryable<Person>, IOrderedQueryable<Person>> ord = _mapper.Map<Func<IQueryable<Person>, IOrderedQueryable<Person>>>(orderBy);
-            return base.Get(filt, ord, includeProperties).Select(f => _mapper.Map<Core.Model.Person>(f));
+            return base.Select(filt, ord, includeProperties).Select(f => _mapper.Map<Core.Model.Person>(f));
         }
 
-        public new Core.Model.Person GetById(Guid id, string includeProperties = "")
+        public new Core.Model.Person SelectById(Guid id, string includeProperties = "")
         {
-            return _mapper.Map<Core.Model.Person>(base.GetById(id, includeProperties));
+            return _mapper.Map<Core.Model.Person>(base.SelectById(id, includeProperties));
         }
 
         public void Insert(Core.Model.Person entity)
