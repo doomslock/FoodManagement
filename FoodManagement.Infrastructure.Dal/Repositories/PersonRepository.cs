@@ -11,10 +11,8 @@ namespace FoodManagement.Infrastructure.Dal
 {
     public class PersonRepository : GenericRepository<Person>, IPersonRepository
     {
-        IMapper _mapper;
-        public PersonRepository(IDataContext context, IMapper mapper) : base(context)
+        public PersonRepository(IDataContext context) : base(context)
         {
-            _mapper = mapper;
         }
     }
 }

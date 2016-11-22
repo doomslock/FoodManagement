@@ -62,7 +62,6 @@ namespace FoodManagement.Infrastructure.Dal
         {
             entity.ObjectState = ObjectState.Added;
             _context.Set<TDataEntity>().Add(entity);
-            //_context.Entry(entity).State = EntityState.Added;
         }
 
         public virtual void Delete(TDataEntity entityToDelete)

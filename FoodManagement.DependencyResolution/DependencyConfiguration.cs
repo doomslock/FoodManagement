@@ -2,9 +2,7 @@
 using FoodManagement.Core;
 using FoodManagement.Infrastructure.Dal;
 using Ninject;
-using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using FoodManagement.Core.Model;
 
 namespace FoodManagement.DependencyResolution
@@ -51,7 +49,8 @@ namespace FoodManagement.DependencyResolution
         {
             protected override void Configure()
             {
-                
+                CreateMap<Core.DTO.ShoppingListItem, ShoppingListItem>();
+                CreateMap<ShoppingListItem, Core.DTO.ShoppingListItem>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Item.Name)).ForMember(dest => dest.Store, opt => opt.MapFrom(src => src.BuyAtStore.Name)).ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Item.Description));
             }
 
             //public class FamilyResolver : IValueResolver<Core.Model.Family, Infrastructure.Dal.Family, List<Infrastructure.Dal.ShoppingListItem>>

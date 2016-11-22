@@ -1,5 +1,5 @@
 ﻿using FoodManagement.Core;
-using FoodManagement.Core.Model;
+using FoodManagement.Core.DTO;
 using System;
 using System.Linq;
 using System.Web.Configuration;
@@ -27,6 +27,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult Get(Guid familyId)
         {
+            //TODO: authenticate whether use has access to family shopping list
             return Ok(_shopService.GetFamilyShoppingList(familyId));
         }
 
@@ -35,21 +36,21 @@ namespace FoodManagement.Service.WebAPI.Controllers
         public IHttpActionResult Post([FromBody] ShoppingListItem item, Guid familyId)
         {
             //TODO: authenticate whether use has access to family shopping list
-            item.Id = Guid.NewGuid();
-            var a = _shopService.GetShoppingListItemDetailsByName(item.Item.Name);
-            if (a != null)
-                BadRequest();
+            var shopItem = _shopService.GetShoppingListItemDetailsByName(item.Name);
+            if (shopItem != null)
+                return BadRequest("The item is already in the shoppinglist, try updating the existing item.");
             _shopService.AddItemToFamilyShoppingList(familyId, item);
-            var returnItem = _shopService.GetShoppingListItemDetailsById(item.Id);
-            return Created(WebConfigurationManager.AppSettings["baseUrl"] + $"api/shoppinglist/{familyId}/items/{returnItem.Id}", returnItem);
+            var returnItem = _shopService.GetShoppingListItemDetailsByName(item.Name);
+            return Created(WebConfigurationManager.AppSettings["baseUrl"] + $"api/shoppinglists/{familyId}/items/{returnItem.Id}", returnItem);
         }
 
         [Route("{familyId:Guid}/items/{itemId:Guid}")]
         [HttpPut]
         public IHttpActionResult Put([FromBody] ShoppingListItem item, Guid familyId, Guid ItemId)
         {
+            //TODO: authenticate whether use has access to family shopping list
             if (item.Id != null && item.Id != ItemId)
-                return BadRequest();
+                return BadRequest("Id provided in item is not the same as the one provided in the url.");
 
             item.Id = ItemId;
             if (_shopService.GetShoppingListItemDetailsById(ItemId) == null)
@@ -63,6 +64,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult Get(Guid familyId, Guid ItemId)
         {
+            //TODO: authenticate whether use has access to family shopping list
             var returnItem = _shopService.GetShoppingListItemDetailsById(ItemId);
             if (returnItem == null)
                 return NotFound();

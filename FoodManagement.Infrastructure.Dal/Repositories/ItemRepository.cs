@@ -3,14 +3,14 @@ using FoodManagement.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using AutoMapper;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class FamilyRepository : GenericRepository<Family>, IFamilyRepository
+    public class ItemRepository: GenericRepository<Item>, IRepository<Item>
     {
-        public FamilyRepository(IDataContext context) : base(context)
+        public ItemRepository(IDataContext context) : base(context)
         {
         }
     }

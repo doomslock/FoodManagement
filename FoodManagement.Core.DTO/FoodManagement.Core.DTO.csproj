@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D21A984-29F0-4CF2-B55F-B974718BD5E0}</ProjectGuid>
+    <ProjectGuid>{4B4F8FB8-29B3-4BED-8363-F1B1AA860AF5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FoodManagement.Core</RootNamespace>
-    <AssemblyName>FoodManagement.Core</AssemblyName>
+    <RootNamespace>FoodManagement.Core.DTO</RootNamespace>
+    <AssemblyName>FoodManagement.Core.DTO</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,18 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,29 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationServices\IShoppinglistService.cs" />
-    <Compile Include="ApplicationServices\ShoppinglistService.cs" />
-    <Compile Include="Infrastructure\IDataContext.cs" />
-    <Compile Include="Infrastructure\IFamilyRepository.cs" />
-    <Compile Include="Infrastructure\IPersonRepository.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
-    <Compile Include="Infrastructure\IRepositoryFactory.cs" />
-    <Compile Include="Infrastructure\IShoppingListRepository.cs" />
-    <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FoodManagement.Core.DTO\FoodManagement.Core.DTO.csproj">
-      <Project>{4b4f8fb8-29b3-4bed-8363-f1b1aa860af5}</Project>
-      <Name>FoodManagement.Core.DTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FoodManagement.Core.Model\FoodManagement.Core.Model.csproj">
-      <Project>{eaa99ab6-2c25-49dd-92aa-4890a27d8bfd}</Project>
-      <Name>FoodManagement.Core.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="ShoppingListItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

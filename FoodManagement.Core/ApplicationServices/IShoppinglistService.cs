@@ -1,4 +1,4 @@
-﻿using FoodManagement.Core.Model;
+﻿using FoodManagement.Core.DTO;
 using System;
 using System.Collections.Generic;
 
