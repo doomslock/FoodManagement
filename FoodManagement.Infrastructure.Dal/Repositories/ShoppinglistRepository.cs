@@ -5,10 +5,11 @@ using System.Linq;
 using System.Data.Entity;
 using System.Linq.Expressions;
 using AutoMapper;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class ShoppingListRepository : GenericRepository<ShoppingListItem>, IRepository<Core.Model.ShoppingListItem>
+    public class ShoppingListRepository : GenericRepository<ShoppingListItem>, IShoppingListRepository
     {
         IMapper _mapper;
         public ShoppingListRepository(IDataContext context, IMapper mapper) : base(context)
@@ -16,31 +17,42 @@ namespace FoodManagement.Infrastructure.Dal
             _mapper = mapper;
         }
 
-        public void Delete(Core.Model.ShoppingListItem entity)
-        {
-            Delete(_mapper.Map<ShoppingListItem>(entity));
-        }
+        //public void Insert(Guid familyId, ShoppingListItem entity)
+        //{
+        //    var item = _context.Set<Item>().FirstOrDefault(s => s.Name == entity.Name);
+        //    var store = _context.Set<Store>().FirstOrDefault(s => s.Name == entity.Store);
+        //    var mappedEntity = _mapper.Map<ShoppingListItem, ShoppingListItem>(entity,
+        //        opt =>
+        //        {
+        //            opt.AfterMap((src, dest) => dest.BuyAtStore = store);
+        //            opt.AfterMap((src, dest) => dest.FamilyId = familyId);
+        //        }); //TODO: should i include all mapping in a method?
 
-        public IEnumerable<Core.Model.ShoppingListItem> Select(Expression<Func<Core.Model.ShoppingListItem, bool>> filter = null, Func<IQueryable<Core.Model.ShoppingListItem>, IOrderedQueryable<Core.Model.ShoppingListItem>> orderBy = null, string includeProperties = "")
-        {
-            return base.Select(_mapper.Map<Expression<Func<ShoppingListItem, bool>>>(filter),
-                _mapper.Map<Func<IQueryable<ShoppingListItem>, IOrderedQueryable<ShoppingListItem>>>(orderBy), 
-                includeProperties).Select(sli => _mapper.Map<Core.Model.ShoppingListItem>(sli));
-        }
+        //    if (item != null)
+        //        mappedEntity.Item = item;
+        //    base.Insert(mappedEntity);
 
-        public new Core.Model.ShoppingListItem SelectById(Guid id, string includeProperties = "")
-        {
-            return _mapper.Map<Core.Model.ShoppingListItem>(base.SelectById(id, includeProperties));
-        }
+        //}
 
-        public void Insert(Core.Model.ShoppingListItem entity)
-        {
-            base.Insert(_mapper.Map<ShoppingListItem>(entity));
-        }
+        //public void Update(Guid familyId, ShoppingListItem entity)
+        //{
+        //    var item = _context.Set<Item>().FirstOrDefault(s => s.Name == entity.Name);
+        //    if (item == null)
+        //    {
+        //        var a = new Item() { Id = Guid.NewGuid(), Name = entity.Name, Description = entity.Description, ObjectState = ObjectState.Added };
+        //        _context.Set<Item>().Add(a);
+        //        item = a;
+        //    }
+        //    var store = _context.Set<Store>().FirstOrDefault(s => s.Name == entity.Store);
+        //    var mappedEntity = _mapper.Map<ShoppingListItem, ShoppingListItem>(entity,
+        //        opt =>
+        //        {
+        //            opt.AfterMap((src, dest) => dest.FamilyId = familyId);
+        //        }); //TODO: should i include all mapping in a method?
+        //    mappedEntity.BuyAtStoreId = store.Id;
+        //    mappedEntity.ItemId = item.Id;
 
-        public void Update(Core.Model.ShoppingListItem entity)
-        {
-            base.Update(_mapper.Map<ShoppingListItem>(entity));
-        }
+        //    base.Update(mappedEntity);
+        //}
     }
 }

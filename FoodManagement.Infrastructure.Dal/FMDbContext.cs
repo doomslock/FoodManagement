@@ -20,6 +20,14 @@ namespace FoodManagement.Infrastructure.Dal
         public DbSet<Item> Items { get; set; }
         public DbSet<Store> Stores { get; set; }
 
+        public override int SaveChanges()
+        {
+            SyncObjectsStatePreCommit();
+            var changes = base.SaveChanges();
+            SyncObjectsStatePostCommit();
+            return changes;
+        }
+
         public void SyncObjectState<TEntity>(TEntity entity) where TEntity : class, IDataEntity
         {
             Entry(entity).State = StateHelper.ConvertState(entity.ObjectState);

@@ -22,7 +22,7 @@ namespace FoodManagement.Infrastructure.Dal
             _dataContext = dataContext;
         }
         
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IModelEntity
+        public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IDataEntity
         {
             return _factory.GetInstance<TEntity>(_dataContext);
         }

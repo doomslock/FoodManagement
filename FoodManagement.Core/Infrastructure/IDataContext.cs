@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FoodManagement.Core.Model;
+using System;
 
 namespace FoodManagement.Core
 {

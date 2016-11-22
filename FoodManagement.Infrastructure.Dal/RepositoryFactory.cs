@@ -13,7 +13,7 @@ namespace FoodManagement.Infrastructure.Dal
         {
             _mapper = mapper;
         }
-        public IRepository<TEntity> GetInstance<TEntity>(IDataContext context) where TEntity: class, IModelEntity
+        public IRepository<TEntity> GetInstance<TEntity>(IDataContext context) where TEntity: class, IDataEntity
         {
             switch (typeof(TEntity).ToString())
             {
@@ -21,7 +21,7 @@ namespace FoodManagement.Infrastructure.Dal
                     return new FamilyRepository(context, _mapper) as IRepository<TEntity>;
                 case "FoodManagement.Core.Model.Person":
                     return new PersonRepository(context, _mapper) as IRepository<TEntity>;
-                case "FoodManagement.Core.Model.ShoppinglistItem":
+                case "FoodManagement.Core.Model.ShoppingListItem":
                     return new ShoppingListRepository(context, _mapper) as IRepository<TEntity>;
                 default:
                     throw new System.NotSupportedException($"The provided generic type argument {nameof(TEntity)} is of the type {typeof(TEntity)} which is an unsupported type in this method.");

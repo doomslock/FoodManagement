@@ -14,37 +14,59 @@ namespace FoodManagement.Core
             _unitOfWork = uow;
         }
 
-        public void AddItemToFamilyShoppingList(Guid personId, ShoppingListItem item)
+        public void AddItemToFamilyShoppingList(Guid familyId, ShoppingListItem item)
         {
-            var person = _unitOfWork.Repository<Person>().SelectById(personId, "");
-            var family = _unitOfWork.Repository<Family>().SelectById(person.FamilyId, "Shoppinglist, Shoppinglist.Item");
-            family.AddShoppingListItem(item);
-            _unitOfWork.Repository<Family>().Update(family);
+            //var family = _unitOfWork.Repository<Family>().SelectById(person.FamilyId, "ShoppingList, ShoppingList.Item");
+            //family.AddShoppingListItem(item);
+            //_unitOfWork.Repository<Family>().Update(family);
+            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Insert(item);
             _unitOfWork.Save();
         }
 
-        public IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid personId)
+        public IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid familyId)
         {
-            var person = _unitOfWork.Repository<Person>().SelectById(personId);
-            return _unitOfWork.Repository<Family>().SelectById(person.FamilyId, "Shoppinglist, Shoppinglist.Item").ShoppingList;
+            return _unitOfWork.Repository<Family>().SelectById(familyId, "Shoppinglist, Shoppinglist.Item, Shoppinglist.BuyAtStore").ShoppingList;
         }
 
-        public void MarkAllShoppingListItemsAsBought(Guid personId)
+        public void MarkAllShoppingListItemsAsBought(Guid familyId)
         {
-            var person = _unitOfWork.Repository<Person>().SelectById(personId);
-            var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
-            familie.MarkAllItemsAsBought();
-            _unitOfWork.Repository<Family>().Update(familie);
+            //var person = _unitOfWork.Repository<Person>().SelectById(familyId);
+            //var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
+            //familie.MarkAllItemsAsBought();
+            //_unitOfWork.Repository<Family>().Update(familie);
+            var shoppingList = GetFamilyShoppingList(familyId);
+            foreach (var item in shoppingList)
+            {
+                (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(item);
+            }
             _unitOfWork.Save();
         }
 
-        public void MarkShoppingListItemAsBought(Guid personId, Guid itemId)
+        public void MarkShoppingListItemAsBought(Guid familyId, Guid itemId)
         {
-            var person = _unitOfWork.Repository<Person>().SelectById(personId);
-            var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
-            familie.MarkItemAsBought(itemId);
-            _unitOfWork.Repository<Family>().Update(familie);
+            //var person = _unitOfWork.Repository<Person>().SelectById(familyId);
+            //var familie = _unitOfWork.Repository<Family>().SelectById(person.FamilyId);
+            //familie.MarkItemAsBought(itemId);
+            //_unitOfWork.Repository<Family>().Update(familie);
+            var item = (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(itemId);
+            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(item);
             _unitOfWork.Save();
+        }
+
+        public void AlterShoppingListItemDetails(Guid familyId, ShoppingListItem item)
+        {
+            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Update(item);
+            _unitOfWork.Save();
+        }
+
+        public ShoppingListItem GetShoppingListItemDetailsById(Guid id)
+        {
+            return (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore");
+        }
+
+        public ShoppingListItem GetShoppingListItemDetailsByName(string name)
+        {
+            return (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name, null, "Item, BuyAtStore").FirstOrDefault();
         }
     }
 }

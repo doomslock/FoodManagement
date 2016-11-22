@@ -2,27 +2,30 @@
 using FoodManagement.Core;
 using FoodManagement.Infrastructure.Dal;
 using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.DependencyResolution
 {
     public class DependencyConfiguration
     {
-        private IKernel kernel;
+        private IKernel _kernel;
+
+        public StandardKernel Kernel { get { return (StandardKernel)_kernel; } }
 
         public DependencyConfiguration()
         {
-            kernel = new StandardKernel();
-
-            kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
-            kernel.Bind<IRepository<Core.Model.Family>>().To<FamilyRepository>();
-            kernel.Bind<IRepository<Core.Model.Person>>().To<PersonRepository>();
-            kernel.Bind<IRepository<Core.Model.ShoppingListItem>>().To<ShoppingListRepository>();
-            kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            kernel.Bind<IShoppingListService>().To<ShoppinglistService>();
-            kernel.Bind<IMapper>().ToConstant(
+            _kernel = new StandardKernel();
+            _kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
+            _kernel.Bind<IRepository<Family>>().To<FamilyRepository>();
+            _kernel.Bind<IRepository<Person>>().To<PersonRepository>();
+            _kernel.Bind<IRepository<ShoppingListItem>>().To<ShoppingListRepository>();
+            _kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
+            _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            _kernel.Bind<IShoppingListService>().To<ShoppinglistService>();
+            _kernel.Bind<IMapper>().ToConstant(
                 new MapperConfiguration(c =>
                 {
                     foreach (var profile in MapperProfiles())
@@ -32,7 +35,7 @@ namespace FoodManagement.DependencyResolution
 
         public TService GetInstance<TService>()
         {
-            return kernel.Get<TService>();
+            return _kernel.Get<TService>();
         }
 
         private static IEnumerable<Profile> MapperProfiles()
@@ -48,15 +51,16 @@ namespace FoodManagement.DependencyResolution
         {
             protected override void Configure()
             {
-                CreateMap<Core.Model.Family, Family>();
-                CreateMap<Family, Core.Model.Family>();
-                CreateMap<Core.Model.Person, Person>();
-                CreateMap<Person, Core.Model.Person>();
-
-                CreateMap<Core.Model.ShoppingListItem, ShoppingListItem>();
-                CreateMap<ShoppingListItem, Core.Model.ShoppingListItem>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Item.Name)).ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Item.Description)).ConstructUsing(x => new Core.Model.ShoppingListItem(x.Id, x.Item.Name, x.Amount));
+                
             }
 
+            //public class FamilyResolver : IValueResolver<Core.Model.Family, Infrastructure.Dal.Family, List<Infrastructure.Dal.ShoppingListItem>>
+            //{
+            //    public List<Infrastructure.Dal.ShoppingListItem> Resolve(Core.Model.Family source, Infrastructure.Dal.Family destination, List<Infrastructure.Dal.ShoppingListItem> member, ResolutionContext context)
+            //    {
+            //        return List < Infrastructure.Dal.ShoppingListItem > Item() { Id = Guid.NewGuid(), Name = source.Name, Description = source.Description, ObjectState = source.ObjectState };
+            //    }
+            //}
         }
     }
 }

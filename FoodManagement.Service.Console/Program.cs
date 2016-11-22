@@ -14,10 +14,10 @@ namespace FoodManagement.Service.Console
         {
             ShoppinglistService shoplistService = new DependencyConfiguration().GetInstance<IShoppingListService>() as ShoppinglistService;
 
-            var shoppinglist = shoplistService.GetFamilyShoppingList(Guid.Parse("D38A4709-4D0A-434B-905B-1ADACB7B015E"));
+            var shoppinglist = shoplistService.GetFamilyShoppingList(Guid.Parse("65A5FFF3-CD22-4212-8BCF-C8112E3D2B7A"));
             foreach (var s in shoppinglist)
             {
-                System.Console.WriteLine($"{s.Name} - {s.Amount}");
+                System.Console.WriteLine($"{s.Item.Name} - {s.Amount}");
             }
             System.Console.ReadKey();
         }

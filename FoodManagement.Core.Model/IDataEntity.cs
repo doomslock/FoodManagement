@@ -1,7 +1,6 @@
-﻿using FoodManagement.Core.Model;
-using System;
+﻿using System;
 
-namespace FoodManagement.Core
+namespace FoodManagement.Core.Model
 {
     public interface IDataEntity : IObjectState
     {
