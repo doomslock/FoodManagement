@@ -70,6 +70,7 @@ namespace FoodManagement.Infrastructure.Dal
             {
                 _context.Set<TDataEntity>().Attach(entityToDelete);
             }
+            entityToDelete.ObjectState = ObjectState.Deleted;
             _context.Set<TDataEntity>().Remove(entityToDelete);
         }
 

@@ -13,7 +13,12 @@ namespace FoodManagement.Infrastructure.Dal
     {
         public ShoppingListRepository(IDataContext context) : base(context)
         {
+            
         }
-        
+
+        public void Delete(Guid shoppingListItemId)
+        {
+            base.Delete(base.SelectById(shoppingListItemId));
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace FoodManagement.Core.DTO
         public int Amount { get; set; }
         public string Store { get; set; }
         public string Description { get; set; }
+        public bool Bought { get; set; }
     }
 }

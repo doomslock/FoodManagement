@@ -2,6 +2,8 @@
 using FoodManagement.Core.DTO;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Configuration;
 using System.Web.Http;
 
@@ -15,7 +17,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         {
             _shopService = shopService;
         }
-
+        //TODO: find generic way to check authenticate someone (check whether he has access to certain data) for example has a person acces to a shoppinglist
         [HttpGet]
         public IHttpActionResult Get()
         {
@@ -36,11 +38,11 @@ namespace FoodManagement.Service.WebAPI.Controllers
         public IHttpActionResult Post([FromBody] ShoppingListItem item, Guid familyId)
         {
             //TODO: authenticate whether use has access to family shopping list
-            var shopItem = _shopService.GetShoppingListItemDetailsByName(item.Name);
+            var shopItem = _shopService.GetShoppingListItemDetailsByName(familyId, item.Name);
             if (shopItem != null)
                 return BadRequest("The item is already in the shoppinglist, try updating the existing item.");
             _shopService.AddItemToFamilyShoppingList(familyId, item);
-            var returnItem = _shopService.GetShoppingListItemDetailsByName(item.Name);
+            var returnItem = _shopService.GetShoppingListItemDetailsByName(familyId, item.Name);
             return Created(WebConfigurationManager.AppSettings["baseUrl"] + $"api/shoppinglists/{familyId}/items/{returnItem.Id}", returnItem);
         }
 
@@ -49,15 +51,19 @@ namespace FoodManagement.Service.WebAPI.Controllers
         public IHttpActionResult Put([FromBody] ShoppingListItem item, Guid familyId, Guid ItemId)
         {
             //TODO: authenticate whether use has access to family shopping list
-            if (item.Id != null && item.Id != ItemId)
+            if (item.Id != default(Guid) && item.Id != ItemId)
                 return BadRequest("Id provided in item is not the same as the one provided in the url.");
 
             item.Id = ItemId;
-            if (_shopService.GetShoppingListItemDetailsById(ItemId) == null)
+            if (_shopService.GetShoppingListItemDetailsById(familyId, ItemId) == null)
                 return NotFound();
 
             _shopService.AlterShoppingListItemDetails(familyId, item);
-            return Ok(_shopService.GetShoppingListItemDetailsById(ItemId));
+
+            if (item.Bought)
+                _shopService.MarkShoppingListItemAsBought(familyId, item.Id);
+
+            return Ok(_shopService.GetShoppingListItemDetailsById(familyId, ItemId));
         }
 
         [Route("{familyId:Guid}/items/{itemId:Guid}")]
@@ -65,11 +71,22 @@ namespace FoodManagement.Service.WebAPI.Controllers
         public IHttpActionResult Get(Guid familyId, Guid ItemId)
         {
             //TODO: authenticate whether use has access to family shopping list
-            var returnItem = _shopService.GetShoppingListItemDetailsById(ItemId);
+            var returnItem = _shopService.GetShoppingListItemDetailsById(familyId, ItemId);
             if (returnItem == null)
                 return NotFound();
 
             return Ok(returnItem);
+        }
+        [Route("{familyId:Guid}/items/{itemId:Guid}")]
+        [HttpDelete]
+        public IHttpActionResult Delete(Guid familyId, Guid ItemId)
+        {
+            //TODO: authenticate whether use has access to family shopping list
+            var returnItem = _shopService.GetShoppingListItemDetailsById(familyId, ItemId);
+            if (returnItem == null)
+                return NotFound();
+
+            return ResponseMessage(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
     }
 }

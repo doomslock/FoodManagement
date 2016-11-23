@@ -11,7 +11,7 @@ namespace FoodManagement.Core
         void MarkShoppingListItemAsBought(Guid familyId, Guid itemId);
         void MarkAllShoppingListItemsAsBought(Guid familyId);
         void AlterShoppingListItemDetails(Guid familyId, ShoppingListItem item);
-        ShoppingListItem GetShoppingListItemDetailsById(Guid id);
-        ShoppingListItem GetShoppingListItemDetailsByName(string name);
+        ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid id);
+        ShoppingListItem GetShoppingListItemDetailsByName(Guid familyId, string name);
     }
 }

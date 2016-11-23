@@ -22,6 +22,15 @@ namespace FoodManagement.Core
             return _unitOfWork.Repository<Family>().SelectById(familyId, "Shoppinglist, Shoppinglist.Item, Shoppinglist.BuyAtStore").ShoppingList.Select(sli => _mapper.Map<DTO.ShoppingListItem>(sli));
         }
 
+        public DTO.ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid id)
+        {
+            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore", sli => sli.FamilyId == familyId));
+        }
+
+        public DTO.ShoppingListItem GetShoppingListItemDetailsByName(Guid familyId, string name)
+        {
+            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name && s.FamilyId == familyId, null, "Item, BuyAtStore").FirstOrDefault());
+        }
         public void MarkAllShoppingListItemsAsBought(Guid familyId)
         {
             var shoppingList = GetFamilyShoppingList(familyId);
@@ -49,20 +58,17 @@ namespace FoodManagement.Core
 
         public void AlterShoppingListItemDetails(Guid familyId, DTO.ShoppingListItem shopItem)
         {
+            //TODO: Check if shopItem is in family shopping list
             (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Update(MapShoppingItem(familyId, shopItem));
             _unitOfWork.Save();
         }
-        
-        public DTO.ShoppingListItem GetShoppingListItemDetailsById(Guid id)
-        {
-            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore"));
-        }
 
-        public DTO.ShoppingListItem GetShoppingListItemDetailsByName(string name)
+        public void RemoveShoppingListItemForFamily(Guid familyId, Guid shoppingListItemId)
         {
-            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name, null, "Item, BuyAtStore").FirstOrDefault());
+            if (GetShoppingListItemDetailsById(familyId, shoppingListItemId) == null)
+                throw new NullReferenceException("The provided shoppingListItemId is not in the family shopping list.");
+            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(shoppingListItemId);
         }
-
         private ShoppingListItem MapShoppingItem(Guid familyId, DTO.ShoppingListItem shopItem)
         {
             var store = _unitOfWork.Repository<Store>().Select(s => s.Name.Equals(shopItem.Store)).FirstOrDefault();
