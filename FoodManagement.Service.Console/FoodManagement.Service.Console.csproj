@@ -62,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FoodManagement.Core.DTO\FoodManagement.Core.DTO.csproj">
+      <Project>{4b4f8fb8-29b3-4bed-8363-f1b1aa860af5}</Project>
+      <Name>FoodManagement.Core.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FoodManagement.Core.Model\FoodManagement.Core.Model.csproj">
       <Project>{eaa99ab6-2c25-49dd-92aa-4890a27d8bfd}</Project>
       <Name>FoodManagement.Core.Model</Name>

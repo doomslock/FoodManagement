@@ -53,8 +53,8 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Moq, Version=4.5.23.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.5.23\lib\net45\Moq.dll</HintPath>
+    <Reference Include="Moq, Version=4.5.28.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -81,6 +81,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FoodManagement.Core.DTO\FoodManagement.Core.DTO.csproj">
+      <Project>{4b4f8fb8-29b3-4bed-8363-f1b1aa860af5}</Project>
+      <Name>FoodManagement.Core.DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FoodManagement.Core.Model\FoodManagement.Core.Model.csproj">
       <Project>{eaa99ab6-2c25-49dd-92aa-4890a27d8bfd}</Project>
       <Name>FoodManagement.Core.Model</Name>

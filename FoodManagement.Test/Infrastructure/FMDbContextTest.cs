@@ -1,4 +1,5 @@
-﻿using FoodManagement.Infrastructure.Dal;
+﻿using FoodManagement.Core.Model;
+using FoodManagement.Infrastructure.Dal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

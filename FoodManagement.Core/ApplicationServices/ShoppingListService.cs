@@ -41,7 +41,7 @@ namespace FoodManagement.Core
 
         public void AddItemToFamilyShoppingList(Guid familyId, DTO.ShoppingListItem shopItem)
         {
-            var mappedItem = mapShoppingItem(familyId, shopItem);
+            var mappedItem = MapShoppingItem(familyId, shopItem);
             mappedItem.Id = Guid.NewGuid();
             (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Insert(mappedItem);
             _unitOfWork.Save();
@@ -49,11 +49,21 @@ namespace FoodManagement.Core
 
         public void AlterShoppingListItemDetails(Guid familyId, DTO.ShoppingListItem shopItem)
         {
-            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Update(mapShoppingItem(familyId, shopItem));
+            (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Update(MapShoppingItem(familyId, shopItem));
             _unitOfWork.Save();
         }
+        
+        public DTO.ShoppingListItem GetShoppingListItemDetailsById(Guid id)
+        {
+            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore"));
+        }
 
-        private ShoppingListItem mapShoppingItem(Guid familyId, DTO.ShoppingListItem shopItem)
+        public DTO.ShoppingListItem GetShoppingListItemDetailsByName(string name)
+        {
+            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name, null, "Item, BuyAtStore").FirstOrDefault());
+        }
+
+        private ShoppingListItem MapShoppingItem(Guid familyId, DTO.ShoppingListItem shopItem)
         {
             var store = _unitOfWork.Repository<Store>().Select(s => s.Name.Equals(shopItem.Store)).FirstOrDefault();
             if (store == null)
@@ -73,16 +83,6 @@ namespace FoodManagement.Core
             mappedItem.ItemId = item.Id;
 
             return mappedItem;
-        }
-
-        public DTO.ShoppingListItem GetShoppingListItemDetailsById(Guid id)
-        {
-            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore"));
-        }
-
-        public DTO.ShoppingListItem GetShoppingListItemDetailsByName(string name)
-        {
-            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name, null, "Item, BuyAtStore").FirstOrDefault());
         }
     }
 }
