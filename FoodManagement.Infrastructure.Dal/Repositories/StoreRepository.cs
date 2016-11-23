@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FoodManagement.Infrastructure.Dal
 {
-    public class StoreRepository : GenericRepository<Store>, IRepository<Store>
+    public class StoreRepository : GenericRepository<Store>, IStoreRepository
     {
         public StoreRepository(IDataContext context) : base(context)
         {

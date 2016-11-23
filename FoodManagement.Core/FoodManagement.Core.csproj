@@ -57,6 +57,8 @@
     <Compile Include="ApplicationServices\ShoppinglistService.cs" />
     <Compile Include="Infrastructure\IDataContext.cs" />
     <Compile Include="Infrastructure\IFamilyRepository.cs" />
+    <Compile Include="Infrastructure\IStoreRepository.cs" />
+    <Compile Include="Infrastructure\IItemRepository.cs" />
     <Compile Include="Infrastructure\IPersonRepository.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IRepositoryFactory.cs" />
