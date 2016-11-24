@@ -24,19 +24,20 @@ namespace FoodManagement.Core
 
         public DTO.ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid id)
         {
-            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).SelectById(id, "Item, BuyAtStore", sli => sli.FamilyId == familyId));
+            return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(sli => sli.Id == id && sli.FamilyId == familyId, null,"Item, BuyAtStore").FirstOrDefault());
         }
 
         public DTO.ShoppingListItem GetShoppingListItemDetailsByName(Guid familyId, string name)
         {
             return _mapper.Map<DTO.ShoppingListItem>((_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Select(s => s.Item.Name == name && s.FamilyId == familyId, null, "Item, BuyAtStore").FirstOrDefault());
         }
+
         public void MarkAllShoppingListItemsAsBought(Guid familyId)
         {
-            var shoppingList = GetFamilyShoppingList(familyId);
+            var shoppingList = GetFamilyShoppingList(familyId).ToList();
             foreach (var item in shoppingList)
             {
-                (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(_mapper.Map<ShoppingListItem>(item));
+                (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(item.Id);
             }
             _unitOfWork.Save();
         }
@@ -68,7 +69,9 @@ namespace FoodManagement.Core
             if (GetShoppingListItemDetailsById(familyId, shoppingListItemId) == null)
                 throw new NullReferenceException("The provided shoppingListItemId is not in the family shopping list.");
             (_unitOfWork.Repository<ShoppingListItem>() as IShoppingListRepository).Delete(shoppingListItemId);
+            _unitOfWork.Save();
         }
+
         private ShoppingListItem MapShoppingItem(Guid familyId, DTO.ShoppingListItem shopItem)
         {
             var store = _unitOfWork.Repository<Store>().Select(s => s.Name.Equals(shopItem.Store)).FirstOrDefault();

@@ -66,11 +66,11 @@ namespace FoodManagement.Infrastructure.Dal
 
         public virtual void Delete(TDataEntity entityToDelete)
         {
+            entityToDelete.ObjectState = ObjectState.Deleted;
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 _context.Set<TDataEntity>().Attach(entityToDelete);
             }
-            entityToDelete.ObjectState = ObjectState.Deleted;
             _context.Set<TDataEntity>().Remove(entityToDelete);
         }
 

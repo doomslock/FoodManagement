@@ -25,8 +25,8 @@ namespace FoodManagement.Test
         [TestInitialize]
         public void Initialize()
         {
-            shoppingList.Add(new ShoppingListItem() { Id = Guid.NewGuid(), Item = new Item() { Id = Guid.NewGuid(), Name = "Ananas" }, Amount = 1 });
             var familyId = Guid.NewGuid();
+            shoppingList.Add(new ShoppingListItem() { Id = Guid.NewGuid(), Item = new Item() { Id = Guid.NewGuid(), Name = "Ananas" }, Amount = 1, FamilyId = familyId });
             currentUser = new Person() { Id = Guid.Parse("D38A4709-4D0A-434B-905B-1ADACB7B015E"), FamilyId = familyId, Name = "Jens", LastName = "Van den Driessche", Email = "vandendriesschejens@msn.com" };
             people.Add(currentUser);
             familyList.Add(new Family() { Id = familyId, Name = "Van den Driessche", ShoppingList = shoppingList, FamilyMembers = people });
@@ -176,7 +176,7 @@ namespace FoodManagement.Test
         public void GetShoppingListItemDetailsById()
         {
             var id = shoppingList.First().Id;
-            var returnId = slService.GetShoppingListItemDetailsById(id).Id;
+            var returnId = slService.GetShoppingListItemDetailsById(currentUser.FamilyId, id).Id;
             Assert.AreEqual(id, returnId);
         }
 
@@ -184,7 +184,7 @@ namespace FoodManagement.Test
         public void GetShoppingListItemDetailsByName()
         {
             var sli = shoppingList.First();
-            var returnSli = slService.GetShoppingListItemDetailsByName(sli.Item.Name);
+            var returnSli = slService.GetShoppingListItemDetailsByName(currentUser.FamilyId, sli.Item.Name);
             Assert.AreEqual(sli.Item.Name, returnSli.Name);
         }
     }
