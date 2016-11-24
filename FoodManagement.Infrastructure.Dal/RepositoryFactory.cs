@@ -1,26 +1,33 @@
-﻿using FoodManagement.Core;
-using System;
-using System.Collections.Generic;
+﻿using AutoMapper;
+using FoodManagement.Core;
+using FoodManagement.Core.Model;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodManagement.Infrastructure.Dal
 {
     public class RepositoryFactory : IRepositoryFactory
     {
-        private DbContext _context;
-        private IUnitOfWork _unitOfWork;
 
-        public RepositoryFactory(DbContext context, IUnitOfWork unitOfWork)
+        public RepositoryFactory()
         {
-            _context = context;
-            _unitOfWork = unitOfWork;
         }
-        public IGenericRepository<TEntity> GetInstance<TEntity>() where TEntity : class
+        public IRepository<TEntity> GetInstance<TEntity>(IDataContext context) where TEntity: class, IDataEntity
         {
-            return new GenericRepository<TEntity>(_context, _unitOfWork);
+            switch (typeof(TEntity).ToString())
+            {
+                case "FoodManagement.Core.Model.Family":
+                    return new FamilyRepository(context) as IRepository<TEntity>;
+                case "FoodManagement.Core.Model.Person":
+                    return new PersonRepository(context) as IRepository<TEntity>;
+                case "FoodManagement.Core.Model.ShoppingListItem":
+                    return new ShoppingListRepository(context) as IRepository<TEntity>;
+                case "FoodManagement.Core.Model.Store":
+                    return new StoreRepository(context) as IRepository<TEntity>;
+                case "FoodManagement.Core.Model.Item":
+                    return new ItemRepository(context) as IRepository<TEntity>;
+                default:
+                    throw new System.NotSupportedException($"The provided generic type argument {nameof(TEntity)} is of the type {typeof(TEntity)} which is an unsupported type in this method.");
+            }
         }
     }
 }

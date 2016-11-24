@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FoodManagement.Core.Model;
 
 namespace FoodManagement.Core
 {
     public interface IRepositoryFactory
     {
-        IGenericRepository<TEntity> GetInstance<TEntity>() where TEntity : class;
+        IRepository<TEntity> GetInstance<TEntity>(IDataContext context) where TEntity : class, IDataEntity;
     }
 }

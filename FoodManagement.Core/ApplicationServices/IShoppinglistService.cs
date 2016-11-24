@@ -1,14 +1,19 @@
-﻿using FoodManagement.Core.Model;
+﻿using FoodManagement.Core.DTO;
 using System;
 using System.Collections.Generic;
 
 namespace FoodManagement.Core
 {
-    public interface IShoppinglistService
+    public interface IShoppingListService
     {
-        void AddItemToFamilyShoppinglist(Guid PersonId, ShoppinglistItem item);
-        IEnumerable<ShoppinglistItem> GetFamilyShoppinglist(Guid PersonId);
-        void MarkShoppinglistItemAsBought(Guid Item);
-        void MarkAllShoppinglistItemsAsBought(Guid FamilyId);
+        
+        IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid familyId);
+        ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid id);
+        ShoppingListItem GetShoppingListItemDetailsByName(Guid familyId, string name);
+        void AddItemToFamilyShoppingList(Guid familyId, ShoppingListItem item);
+        void MarkShoppingListItemAsBought(Guid familyId, Guid itemId);
+        void MarkAllShoppingListItemsAsBought(Guid familyId);
+        void AlterShoppingListItemDetails(Guid familyId, ShoppingListItem item);
+        void RemoveShoppingListItemForFamily(Guid familyId, Guid shoppingListItemId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using FoodManagement.Infrastructure.Dal;
+﻿using FoodManagement.Core.Model;
+using FoodManagement.Infrastructure.Dal;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -15,19 +16,19 @@ namespace FoodManagement.Test.Infrastructure
         //[Ignore]
         public void Initialize()
         {
-            context = new FMDbContext();            
+            context = new FMDbContext();
         }
 
         [TestMethod]
-        //[Ignore]
+        [Ignore]
         public void ClearAndFillDatabase()
         {
             FillDbWithTestData();
-            Assert.IsNotNull(context.Families.First());
-            Assert.IsNotNull(context.People.First());
-            Assert.IsNotNull(context.Items.First());
-            Assert.IsNotNull(context.Stores.First());
-            Assert.IsNotNull(context.ShoppinglistItems.First());
+            Assert.IsNotNull(context.Set<Family>().First());
+            Assert.IsNotNull(context.Set<Person>().First());
+            Assert.IsNotNull(context.Set<Item>().First());
+            Assert.IsNotNull(context.Set<Store>().First());
+            Assert.IsNotNull(context.Set<ShoppingListItem>().First());
         }
 
         private void FillDbWithTestData()
@@ -41,12 +42,12 @@ namespace FoodManagement.Test.Infrastructure
             var store = new Store() { Id = Guid.NewGuid(), Name = "Delhaize" };
             var item = new Item() { Id = Guid.NewGuid(), Name = "Mango", Description = "Tropical Fruit" };
             var family = new Family() { Name = "Van den Driessche", Id = Guid.NewGuid() };
-            var sli = new ShoppinglistItem() { Id = Guid.NewGuid(), Amount = 3, BuyAtStoreId = store.Id, ItemId = item.Id, FamilyId = family.Id };
+            var sli = new ShoppingListItem() { Id = Guid.NewGuid(), Amount = 3, BuyAtStoreId = store.Id, ItemId = item.Id, FamilyId = family.Id };
             var user = new Person() { Id = Guid.NewGuid(), Name = "Jens", LastName = "Van den Driessche", Email = "vandendriesschejens@msn.com", Family = family };
-            context.People.Add(user);
-            context.Items.Add(item);
-            context.Stores.Add(store);
-            context.ShoppinglistItems.Add(sli);
+            context.Set<Person>().Add(user);
+            context.Set<Item>().Add(item);
+            context.Set<Store>().Add(store);
+            context.Set<ShoppingListItem>().Add(sli);
             context.SaveChanges();
         }
     }

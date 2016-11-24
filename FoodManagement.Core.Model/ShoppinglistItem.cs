@@ -1,13 +1,23 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using FoodManagement.Core;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.Core.Model
 {
-    public class ShoppinglistItem
+    [Table("ShoppinglistItems")]
+    public class ShoppingListItem : IDataEntity
     {
+        [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Store { get; set; }
-        public string Description { get; set; }
         public int Amount { get; set; }
+        public Guid FamilyId { get; set; }
+        public Guid ItemId { get; set; }
+        public Item Item { get; set; }
+        public Guid? BuyAtStoreId { get; set; }
+        public Store BuyAtStore { get; set; }
+        [NotMapped]
+        public ObjectState ObjectState { get; set; }
     }
 }

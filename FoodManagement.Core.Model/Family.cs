@@ -1,13 +1,21 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using FoodManagement.Core;
 using System.Collections.Generic;
+using FoodManagement.Core.Model;
 
 namespace FoodManagement.Core.Model
 {
-    public class Family
+    [Table("Families")]
+    public class Family : IDataEntity
     {
-        public Guid Id { get; private set; }
+        [Key]
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public IEnumerable<Person> FamilyMembers { get; set; }
-        public IEnumerable<ShoppinglistItem> ShoppingList { get; set; }
+        public ICollection<Person> FamilyMembers { get; set; }
+        public ICollection<ShoppingListItem> ShoppingList { get; set; }
+        [NotMapped]
+        public ObjectState ObjectState { get; set; }
     }
 }
