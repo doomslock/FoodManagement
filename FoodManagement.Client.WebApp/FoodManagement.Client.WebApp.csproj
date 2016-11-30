@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProjectGuid>{B3A8FB96-1DDD-4E4F-8388-6678284BDC1A}</ProjectGuid>
+    <ProjectGuid>{E1FABB19-6A90-4C72-A323-67BE013D323F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <OutputPath>bin</OutputPath>
@@ -22,38 +22,56 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\app.routes.ts" />
+    <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\components\home\HomeController.ts" />
+    <TypeScriptCompile Include="app\components\shoppinglist\ShoppingListController.ts" />
+    <TypeScriptCompile Include="app\shared\ApiCall.ts" />
+    <TypeScriptCompile Include="app\shared\ShoppinglistService.ts" />
+    <TypeScriptCompile Include="entry.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\components\home\home.html" />
+    <Content Include="app\components\login\login.html" />
+    <Content Include="app\components\shoppinglist\shoppinglist.html" />
     <Content Include="assets\libs\angular\angular-mocks.js" />
     <Content Include="assets\libs\angular\angular.js" />
     <Content Include="assets\libs\angular\angular.min.js" />
-    <Content Include="index.html" />
+    <Content Include="assets\libs\angular\angular-route.js" />
+    <Content Include="assets\libs\angular\angular-route.min.js" />
+    <Content Include="assets\css\bootstrap-theme.css" />
+    <Content Include="assets\css\bootstrap-theme.min.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="packages.config" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
+    <Content Include="assets\css\bootstrap.css.map" />
+    <Content Include="assets\css\bootstrap-theme.min.css.map" />
+    <Content Include="assets\css\bootstrap-theme.css.map" />
+    <Content Include="assets\libs\bootstrap\bootstrap.js" />
+    <Content Include="assets\libs\bootstrap\bootstrap.min.js" />
+    <Content Include="webpack.config.js" />
     <None Include="assets\libs\jquery\jquery-3.1.1.intellisense.js" />
     <Content Include="assets\libs\jquery\jquery-3.1.1.js" />
     <Content Include="assets\libs\jquery\jquery-3.1.1.min.js" />
     <Content Include="assets\libs\jquery\jquery-3.1.1.slim.js" />
     <Content Include="assets\libs\jquery\jquery-3.1.1.slim.min.js" />
-    <Content Include="web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\app.routes.ts" />
+    <Content Include="index.html" />
+    <Content Include="assets\libs\angular\angular-route.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\libs\angular\angular.min.js.map" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.slim.min.map" />
     <Content Include="assets\libs\jquery\jquery-3.1.1.min.map" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
+    <Content Include="assets\libs\jquery\jquery-3.1.1.slim.min.map" />
+    <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\home\" />
-    <Folder Include="app\components\login\" />
-    <Folder Include="app\components\shoppinglist\" />
-    <Folder Include="app\shared\" />
-    <Folder Include="assets\css\" />
     <Folder Include="assets\img\" />
     <Folder Include="assets\js\" />
   </ItemGroup>
@@ -71,7 +89,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64782</DevelopmentServerPort>
+          <DevelopmentServerPort>54807</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:64782/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
