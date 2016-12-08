@@ -1,1 +1,0 @@
-{"version":3,"file":"ShoppinglistService.js","sourceRoot":"","sources":["ShoppinglistService.ts"],"names":[],"mappings":"AAAA,iBAAiB,CAAC,OAAO,CAAC,qBAAqB,EAAE,6BAA6B,OAAO;IACjF,MAAM,CAAC;QACH,WAAW,EAAE;YACT,MAAM,CAAC,OAAO,CAAC,UAAU,CAAC,oDAAoD,CAAC,CAAC;QACpF,CAAC;KACJ,CAAC;AACN,CAAC,CAAC,CAAA"}

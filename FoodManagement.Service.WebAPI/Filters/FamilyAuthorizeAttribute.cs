@@ -19,7 +19,7 @@ namespace FoodManagement.Service.WebAPI
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
             object value;
-            value = actionContext.RequestContext.RouteData.Values.First(d => d.Key == "familyId").Value;
+            value = actionContext.RequestContext.RouteData.Values.FirstOrDefault(d => d.Key == "familyId").Value;
             if (value == null)
                 return true;
             Guid familyId = new Guid((string)value);

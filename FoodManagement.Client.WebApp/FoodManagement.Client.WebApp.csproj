@@ -22,58 +22,70 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\app.routes.ts" />
-    <TypeScriptCompile Include="app\app.ts" />
-    <TypeScriptCompile Include="app\components\home\HomeController.ts" />
-    <TypeScriptCompile Include="app\components\shoppinglist\ShoppingListController.ts" />
-    <TypeScriptCompile Include="app\shared\ApiCall.ts" />
-    <TypeScriptCompile Include="app\shared\ShoppinglistService.ts" />
-    <TypeScriptCompile Include="entry.ts" />
+    <TypeScriptCompile Include="src\app.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\app.routes.ts" />
+    <TypeScriptCompile Include="src\app\components\home\HomeController.ts" />
+    <TypeScriptCompile Include="src\app\components\shoppingitem\ShoppingItemController.ts" />
+    <TypeScriptCompile Include="src\app\components\shoppinglist\ShoppingListController.ts" />
+    <TypeScriptCompile Include="src\app\shared\ApiCall.ts" />
+    <TypeScriptCompile Include="src\app\shared\ShoppinglistService.ts" />
+    <TypeScriptCompile Include="src\bootstrap.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-animate.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-component-router.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-cookies.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-resource.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-route.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular-sanitize.d.ts" />
+    <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\components\home\home.html" />
-    <Content Include="app\components\login\login.html" />
-    <Content Include="app\components\shoppinglist\shoppinglist.html" />
-    <Content Include="assets\libs\angular\angular-mocks.js" />
-    <Content Include="assets\libs\angular\angular.js" />
-    <Content Include="assets\libs\angular\angular.min.js" />
-    <Content Include="assets\libs\angular\angular-route.js" />
-    <Content Include="assets\libs\angular\angular-route.min.js" />
-    <Content Include="assets\css\bootstrap-theme.css" />
-    <Content Include="assets\css\bootstrap-theme.min.css" />
-    <Content Include="assets\css\bootstrap.css" />
-    <Content Include="assets\css\bootstrap.min.css" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="entry.js" />
     <Content Include="packages.config" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="assets\css\bootstrap.min.css.map" />
-    <Content Include="assets\css\bootstrap.css.map" />
-    <Content Include="assets\css\bootstrap-theme.min.css.map" />
-    <Content Include="assets\css\bootstrap-theme.css.map" />
-    <Content Include="assets\libs\bootstrap\bootstrap.js" />
-    <Content Include="assets\libs\bootstrap\bootstrap.min.js" />
+    <Content Include="src\app\components\home\home.html" />
+    <Content Include="src\app\components\login\login.html" />
+    <Content Include="src\app\components\shoppingitem\shoppingitem.html" />
+    <Content Include="src\app\components\shoppinglist\shoppinglist.html" />
+    <Content Include="src\assets\css\bootstrap-theme.css" />
+    <Content Include="src\assets\css\bootstrap-theme.min.css" />
+    <Content Include="src\assets\css\bootstrap.css" />
+    <Content Include="src\assets\css\bootstrap.min.css" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="src\assets\libs\angular\angular-mocks.js" />
+    <Content Include="src\assets\libs\angular\angular-route.js" />
+    <Content Include="src\assets\libs\angular\angular-route.min.js" />
+    <Content Include="src\assets\libs\angular\angular.js" />
+    <Content Include="src\assets\libs\angular\angular.min.js" />
+    <Content Include="src\assets\libs\bootstrap\bootstrap.js" />
+    <Content Include="src\assets\libs\bootstrap\bootstrap.min.js" />
+    <None Include="src\assets\libs\jquery\jquery-3.1.1.intellisense.js" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.js" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.min.js" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.slim.js" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.slim.min.js" />
+    <Content Include="src\index.html" />
     <Content Include="webpack.config.js" />
-    <None Include="assets\libs\jquery\jquery-3.1.1.intellisense.js" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.js" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.min.js" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.slim.js" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.slim.min.js" />
-    <Content Include="index.html" />
-    <Content Include="assets\libs\angular\angular-route.min.js.map" />
+    <Content Include="src\assets\css\bootstrap-theme.css.map" />
+    <Content Include="src\assets\css\bootstrap-theme.min.css.map" />
+    <Content Include="src\assets\css\bootstrap.css.map" />
+    <Content Include="src\assets\css\bootstrap.min.css.map" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="src\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="src\assets\libs\angular\angular-route.min.js.map" />
+    <Content Include="src\assets\libs\angular\angular.min.js.map" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.min.map" />
+    <Content Include="src\assets\libs\jquery\jquery-3.1.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\libs\angular\angular.min.js.map" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.min.map" />
-    <Content Include="assets\libs\jquery\jquery-3.1.1.slim.min.map" />
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\img\" />
-    <Folder Include="assets\js\" />
+    <Folder Include="src\assets\img\" />
+    <Folder Include="src\assets\js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

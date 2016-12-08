@@ -1,1 +1,0 @@
-{"version":3,"file":"ShoppingListController.js","sourceRoot":"","sources":["ShoppingListController.ts"],"names":[],"mappings":"AAAA,YAAY,CAAC;AAEb,iBAAiB,CAAC,UAAU,CAAC,wBAAwB,EAAE,gCAAgC,MAAM,EAAE,mBAAmB;IAE9G,mBAAmB,CAAC,WAAW,EAAE,CAAC,OAAO,CAAC,UAAU,IAAI;QACpD,MAAM,CAAC,YAAY,GAAG,IAAI,CAAC;IAC/B,CAAC,CAAC,CAAC;AAEP,CAAC,CAAC,CAAC"}

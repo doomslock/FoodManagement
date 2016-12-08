@@ -16,7 +16,7 @@ namespace FoodManagement.DependencyResolution
         public DependencyConfiguration()
         {
             _kernel = new StandardKernel();
-            _kernel.Bind<IDataContext>().ToConstant(new FMDbContext());//.InTransientScope();
+            _kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
             _kernel.Bind<IRepository<Family>>().To<FamilyRepository>();
             _kernel.Bind<IRepository<Person>>().To<PersonRepository>();
             _kernel.Bind<IRepository<ShoppingListItem>>().To<ShoppingListRepository>();

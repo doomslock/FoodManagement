@@ -1,0 +1,17 @@
+ul li div input {
+    border: none;
+}
+
+ul li div input:hover {
+    border: 1px solid #999;
+}
+ul li div select{
+    border: none;
+}
+ul li div select:hover {
+    border: 1px solid #999;
+}
+
+ul li .itemHead{
+    background-color: #bbb; 
+}

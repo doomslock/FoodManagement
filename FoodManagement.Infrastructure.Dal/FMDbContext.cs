@@ -9,7 +9,7 @@ namespace FoodManagement.Infrastructure.Dal
     {
         private bool _disposed;
 
-        public FMDbContext() : base(@"Data Source=(localdb)\v11.0;Initial Catalog=FoodManagement;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+        public FMDbContext() : base(@"Data Source=(localdb)\v11.0;Initial Catalog=FoodManagement;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;MultipleActiveResultSets=true")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;

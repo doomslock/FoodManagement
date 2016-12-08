@@ -74,24 +74,33 @@ namespace FoodManagement.Core
 
         private ShoppingListItem MapShoppingItem(Guid familyId, DTO.ShoppingListItem shopItem)
         {
+            var mappedItem = _mapper.Map<ShoppingListItem>(shopItem);
             var store = _unitOfWork.Repository<Store>().Select(s => s.Name.Equals(shopItem.Store)).FirstOrDefault();
-            if (store == null)
+            if (store == null && !string.IsNullOrWhiteSpace(shopItem.Store))
             {
                 store = new Store() { Id = Guid.NewGuid(), Name = shopItem.Store };
                 _unitOfWork.Repository<Store>().Insert(store);
+                mappedItem.BuyAtStoreId = store.Id;
+                mappedItem.BuyAtStore = store;
             }
             var item = _unitOfWork.Repository<Item>().Select(s => s.Name.Equals(shopItem.Name)).FirstOrDefault();
             if (item == null)
             {
+                if (string.IsNullOrWhiteSpace(shopItem.Name))
+                    throw new ArgumentException("A value must be provided for the name of the item");
                 item = new Item() { Id = Guid.NewGuid(), Name = shopItem.Name, Description = shopItem.Description };
                 _unitOfWork.Repository<Item>().Insert(item);
             }
-            var mappedItem = _mapper.Map<ShoppingListItem>(shopItem);
-            mappedItem.BuyAtStoreId = store.Id;
             mappedItem.FamilyId = familyId;
             mappedItem.ItemId = item.Id;
+            mappedItem.Item = item;
 
             return mappedItem;
+        }
+
+        public IEnumerable<string> GetShoppingListItemNames(string searchTerm)
+        {
+            return _unitOfWork.Repository<Item>().Select(i => i.Name.Contains(searchTerm)).Select(i => i.Name);
         }
     }
 }

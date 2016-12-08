@@ -1,0 +1,32 @@
+﻿<div class="jumbotron text-center">
+    <h1>Shopping List</h1>
+</div>
+<main>
+    <input type="text" ng-model="searchTerm" />
+    <button id="sync" class="glyphicon glyphicon-refresh" ng-click="SaveChanges()"></button>
+    <ul class="list-group">
+        <li ng-repeat="item in shoppingList" class="list-group-item">
+            <div class="itemHead" data-toggle="collapse" data-target="#details{{item.id}}" ng-click="SaveChanges()">
+                {{item.name}}
+                <span class="tag">{{item.amount}}</span>
+                <button class="update-shoppinglist glyphicon glyphicon-pencil" ng-show="item.changed" ></button>
+            </div>
+            <div hidden id="details{{item.id}}">
+                <label for="name{{item.id}}">Name</label>
+                <shopping-item-name id="name{{item.id}}" item="item" blur="CheckForChange(item)"></shopping-item-name><br/>
+                <!--<img id="pic{{item.id}}" />-->
+                <label for="amount{{item.id}}">Amount</label>
+                <input id="amount{{item.id}}" type="number" min="0" ng-model="item.amount" ng-blur="CheckForChange(item)" /><br/>
+                <label for="store{{item.id}}">Store</label>
+                <select id="store{{item.id}}" ng-blur="CheckForChange(item)">
+                    <option ng-repeat="store in storelist">{{store.name}}</option>
+                </select><br/>
+                <label for="description{{item.id}}">Description</label>
+                <input id="description{{item.id}}" type="text" ng-model="item.description" ng-blur="CheckForChange(item)" />
+                <!--<span class="glyphicon glyphicon-floppy-save" ng-click="saveChanges(item.id)"></span>-->
+            </div>
+        </li>
+    </ul>
+    <button class="glyphicon glyphicon-plus" ng-click="NewItem()"></button>
+</main>
+<link href="assets/css/shoppinglist.css" rel="stylesheet" />

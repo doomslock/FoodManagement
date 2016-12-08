@@ -40,7 +40,7 @@ namespace FoodManagement.Infrastructure.Dal
             }
             else
             {
-                return query.ToList();
+                return query.ToList(); //Close DataReader
             }
         }
 
