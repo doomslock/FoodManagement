@@ -16,7 +16,12 @@ namespace FoodManagement.Service.WebAPI
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-            app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(config);
+            var resolver = new NinjectDependencyResolver(CreateKernel());
+            
+            //Register Resolver for Web Api
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
+
+            app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(config);            
         }
 
         private static StandardKernel CreateKernel()

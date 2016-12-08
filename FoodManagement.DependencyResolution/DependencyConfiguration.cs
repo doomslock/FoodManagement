@@ -16,19 +16,21 @@ namespace FoodManagement.DependencyResolution
         public DependencyConfiguration()
         {
             _kernel = new StandardKernel();
-            _kernel.Bind<IDataContext>().ToConstant(new FMDbContext());
+            _kernel.Bind<IDataContext>().ToConstant(new FMDbContext());//.InTransientScope();
             _kernel.Bind<IRepository<Family>>().To<FamilyRepository>();
             _kernel.Bind<IRepository<Person>>().To<PersonRepository>();
             _kernel.Bind<IRepository<ShoppingListItem>>().To<ShoppingListRepository>();
             _kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
             _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             _kernel.Bind<IShoppingListService>().To<ShoppinglistService>();
+            _kernel.Bind<IFamilyService>().To<FamilyService>();
             _kernel.Bind<IMapper>().ToConstant(
                 new MapperConfiguration(c =>
                 {
                     foreach (var profile in MapperProfiles())
                         c.AddProfile(profile);
                 }).CreateMapper());
+            
         }
 
         public TService GetInstance<TService>()
