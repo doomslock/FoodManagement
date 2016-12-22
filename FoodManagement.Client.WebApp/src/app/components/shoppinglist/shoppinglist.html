@@ -16,7 +16,7 @@
             </div>
             <div hidden class="itemBody" id="details{{item.id}}">
                 <label for="name{{item.id}}">Name</label>
-                <shopping-item-name class="nameInput" id="name{{item.id}}" item="item" blur="NameChaged(item)"></shopping-item-name>
+                <shopping-item-name class="nameInput" id="name{{item.id}}" item="item" blur="NameChanged(item)"></shopping-item-name>
                 <label for="amount{{item.id}}">Amount</label>
                 <input id="amount{{item.id}}" type="number" min="0" ng-model="item.amount" ng-blur="CheckForChange(item)" /><br/>
                 <label for="store{{item.id}}">Store</label>

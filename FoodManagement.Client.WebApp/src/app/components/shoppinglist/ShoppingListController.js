@@ -4,7 +4,7 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
     $scope.searchTerm = "";
     $scope.glued = false;
     var originalShoppingList;
-    ShoppingListService.GetAllItems().success(function (data) {
+    ShoppingListService.GetAllItems().then(function (data) {
         $scope.shoppingList = data;
         originalShoppingList = angular.copy(data, originalShoppingList);
         for (var _i = 0, _a = $scope.shoppingList; _i < _a.length; _i++) {
@@ -14,11 +14,13 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
         $scope.SearchTermChanged();
     });
     $scope.NameChanged = function (item) {
-        ShoppingListService.GetDescriptionForItemName(item.name).success(function (data) {
-            if (data.concat.length > 0)
+        ShoppingListService.GetDescriptionForItemName(item.name).then(function (data) {
+            if (data != null && data.concat.length > 0)
                 item.description = data;
+            $scope.CheckForChange(item);
+        }, function () {
+            $scope.CheckForChange(item);
         });
-        $scope.CheckForChange(item);
     };
     $scope.CheckForChange = function (item) {
         var elementPos = originalShoppingList.map(function (x) {
@@ -45,7 +47,7 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
             result = ShoppingListService.Post(item);
         else
             result = ShoppingListService.Update(item);
-        result.success(function (data) {
+        result.then(function (data) {
             item.amount = data.amount;
             item.id = data.id;
             item.description = data.description;

@@ -14,7 +14,7 @@ foodManagementApp.directive('shoppingItemName', function () {
                 };
                 $scope.Search = function (searchTerm) {
                     if (searchTerm.length > 1) {
-                        ShoppingListService.GetNames(searchTerm).success(function (data) {
+                        ShoppingListService.GetNames(searchTerm).then(function (data) {
                             if (data.indexOf(searchTerm) == -1)
                                 data.push(searchTerm);
                             $scope.found = data;

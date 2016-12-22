@@ -7,7 +7,7 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
     $scope.glued = false;
 
     let originalShoppingList;
-    ShoppingListService.GetAllItems().success(function (data: ShoppingListItem[]) {
+    ShoppingListService.GetAllItems().then(function (data: ShoppingListItem[]) {
         $scope.shoppingList = data;
         originalShoppingList = angular.copy(data, originalShoppingList);
 
@@ -19,11 +19,14 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
     });
 
     $scope.NameChanged = function (item: ShoppingListItem) {
-        ShoppingListService.GetDescriptionForItemName(item.name).success(function(data: string){
-            if(data.concat.length > 0)
-            item.description = data;
+        ShoppingListService.GetDescriptionForItemName(item.name).then(function(data: string){
+            if(data != null && data.concat.length > 0)
+                item.description = data;
+            $scope.CheckForChange(item);
+        }, function(){
+            $scope.CheckForChange(item);
         });
-        $scope.CheckForChange(item);
+        
     }
 
     $scope.CheckForChange = function (item: ShoppingListItem) {
@@ -53,7 +56,7 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
             result = ShoppingListService.Post(item);
         else
             result = ShoppingListService.Update(item);
-        result.success(function (data: ShoppingListItem) {
+        result.then(function (data: ShoppingListItem) {
             item.amount = data.amount;
             item.id = data.id;
             item.description = data.description;
