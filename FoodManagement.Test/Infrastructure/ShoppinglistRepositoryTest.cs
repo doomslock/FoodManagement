@@ -43,14 +43,14 @@ namespace FoodManagement.Test.Infrastructure
         public void GetByIdTest()
         {
             var sli = sliList.First();
-            var returnsli = _rep.SelectById(sli.Id);
+            var returnsli = _rep.FindById(sli.Id);
             Assert.AreEqual(sli.Id, returnsli.Id);
         }
 
         [TestMethod]
         public void GetTest()
         {
-            var returnslis = _rep.Select();
+            var returnslis = _rep.Find();
             Assert.AreEqual(2, returnslis.Count());
         }
     }

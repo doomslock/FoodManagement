@@ -22,7 +22,7 @@ namespace FoodManagement.DependencyResolution
             _kernel.Bind<IRepository<ShoppingListItem>>().To<ShoppingListRepository>();
             _kernel.Bind<IRepositoryFactory>().To<RepositoryFactory>();
             _kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
-            _kernel.Bind<IShoppingListService>().To<ShoppinglistService>();
+            _kernel.Bind<IShoppingListService>().To<ShoppingListService>();
             _kernel.Bind<IFamilyService>().To<FamilyService>();
             _kernel.Bind<IMapper>().ToConstant(
                 new MapperConfiguration(c =>

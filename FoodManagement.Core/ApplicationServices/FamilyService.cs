@@ -16,7 +16,7 @@ namespace FoodManagement.Core
         }
         public bool PersonIsAuthorizedToFamily(Guid personId, Guid familyId)
         {
-            Person p = _unitOfWork.Repository<Person>().SelectById(personId);
+            Person p = _unitOfWork.Repository<Person>().FindById(personId);
             return p.FamilyId == familyId;
         }
     }
