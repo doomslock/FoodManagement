@@ -102,5 +102,10 @@ namespace FoodManagement.Core
         {
             return _unitOfWork.Repository<Item>().Select(i => i.Name.Contains(searchTerm)).Select(i => i.Name);
         }
+
+        public string GetDescriptionsForItemName(string v)
+        {
+            return _unitOfWork.Repository<Item>().Select(i => i.Name.Equals(v)).FirstOrDefault()?.Description;
+        }
     }
 }

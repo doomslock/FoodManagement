@@ -38,6 +38,14 @@ namespace FoodManagement.Service.WebAPI.Controllers
             return Ok(names);
         }
 
+        [Route("~/api/description")]
+        [HttpGet]
+        public IHttpActionResult GetDescriptions(string q)
+        {
+            string description = _shopService.GetDescriptionsForItemName(JsonConvert.DeserializeObject<string>(q));
+            return Ok(description);
+        }
+
         //[Authorize]
         [Route("{familyId:Guid}")]
         [Route("{familyId:Guid}/items")]
