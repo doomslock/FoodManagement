@@ -1,20 +1,22 @@
-﻿<div class="jumbotron text-center">
-    <h1>Shopping List</h1>
-</div>
-<main>
-    <input type="text" ng-model="searchTerm" />
+﻿<nav id="horizontal-nav">
+    <div class="inputSearchLeft"></div>
+    <input type="text" class="search" ng-model="searchTerm" ng-change="SearchTermChanged()" />
     <button id="sync" class="glyphicon glyphicon-refresh" ng-click="SaveChanges()"></button>
-    <ul class="list-group">
-        <li ng-repeat="item in shoppingList" class="list-group-item">
+</nav>
+<main>
+    <ul class="shoppingList" id="shoppingList" scroll-glue="glued">
+        <li ng-repeat="item in shoppingList" class="" ng-show="item.show">
             <div class="itemHead" data-toggle="collapse" data-target="#details{{item.id}}" ng-click="SaveChanges()">
+                <img id="pic{{item.id}}" class="itemImage" src="" />
+                <span class="itemName">
                 {{item.name}}
-                <span class="tag">{{item.amount}}</span>
+                </span>
+                <span class="tag amount">x {{item.amount}}</span>
                 <button class="update-shoppinglist glyphicon glyphicon-pencil" ng-show="item.changed" ></button>
             </div>
-            <div hidden id="details{{item.id}}">
+            <div hidden class="itemBody" id="details{{item.id}}">
                 <label for="name{{item.id}}">Name</label>
-                <shopping-item-name id="name{{item.id}}" item="item" blur="CheckForChange(item)"></shopping-item-name><br/>
-                <!--<img id="pic{{item.id}}" />-->
+                <shopping-item-name class="nameInput" id="name{{item.id}}" item="item" blur="NameChaged(item)"></shopping-item-name>
                 <label for="amount{{item.id}}">Amount</label>
                 <input id="amount{{item.id}}" type="number" min="0" ng-model="item.amount" ng-blur="CheckForChange(item)" /><br/>
                 <label for="store{{item.id}}">Store</label>
@@ -30,3 +32,4 @@
     <button class="glyphicon glyphicon-plus" ng-click="NewItem()"></button>
 </main>
 <link href="assets/css/shoppinglist.css" rel="stylesheet" />
+<link href="assets/css/shoppingitemname.css" rel="stylesheet"/>

@@ -11,6 +11,9 @@ foodManagementApp.factory('ShoppingListService', function ShoppingListService(Ap
         },
         GetNames: function (searchTerm) {
             return ApiCall.GetApiCall('itemnames?q="' + searchTerm + '"');
+        },
+        GetDescriptionForItemName: function (searchTerm) {
+            return ApiCall.GetApiCall('description?q="' + searchTerm + '"');
         }
     };
 });

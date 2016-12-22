@@ -2,12 +2,30 @@
 
 'use strict';
 
-foodManagementApp.controller('ShoppingListController', function ShoppingListController($scope, $window, $rootScope, ShoppingListService, GoogleImageSearch) {
+foodManagementApp.controller('ShoppingListController', function ShoppingListController($scope, $window, $rootScope, ShoppingListService) {
+    $scope.searchTerm = "";
+    $scope.glued = false;
+
     let originalShoppingList;
     ShoppingListService.GetAllItems().success(function (data: ShoppingListItem[]) {
         $scope.shoppingList = data;
         originalShoppingList = angular.copy(data, originalShoppingList);
+
+        for (let item of $scope.shoppingList) {
+            item.show = true;
+        }
+
+        $scope.SearchTermChanged();
     });
+
+    $scope.NameChanged = function (item: ShoppingListItem) {
+        ShoppingListService.GetDescriptionForItemName(item.name).success(function(data: string){
+            if(data.concat.length > 0)
+            item.description = data;
+        });
+        $scope.CheckForChange(item);
+    }
+
     $scope.CheckForChange = function (item: ShoppingListItem) {
         let elementPos = originalShoppingList.map(function (x) {
             return x.id;
@@ -20,6 +38,7 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
     };
 
     $scope.NewItem = function () {
+        $scope.glued = true;
         let item = new ShoppingListItem('Item', 1);
         let objectFound = $scope.shoppingList.map(function (x) {
             return x.id;
@@ -30,13 +49,16 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
 
     $scope.Update = function (item: ShoppingListItem) {
         let result;
-        
-        //var image = GoogleImageSearch.Search(item.name);
         if (item.id == '0')
             result = ShoppingListService.Post(item);
         else
             result = ShoppingListService.Update(item);
-        result.success(function(){
+        result.success(function (data: ShoppingListItem) {
+            item.amount = data.amount;
+            item.id = data.id;
+            item.description = data.description;
+            item.store = data.store;
+            item.name = data.name;
             item.changed = false;
         });
     }
@@ -48,22 +70,34 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
             }
         }
     }
-    
+
+    $scope.SearchTermChanged = function () {
+        let term: string = $scope.searchTerm;
+        if (term.concat.length > 0) {
+            for (let item of $scope.shoppingList) {
+                if (item.name.indexOf(term) >= 0)
+                    item.show = true;
+                else
+                    item.show = false;
+            }
+        } else {
+            for (let item of $scope.shoppingList) {
+                item.show = true;
+            }
+        }
+    }
+
     //$window.onbeforeunload =  $scope.onExit;
     $scope.$on('$destroy', $scope.SaveChanges);
     $('body').bind('beforeunload', function () {
         $scope.SaveChanges;
     });
     $window.onbeforeunload = function () {
-   // handle the exit event
+        // handle the exit event
         $scope.SaveChanges;
     };
     $(window).bind('beforeunload', function () {
-
-        //save info somewhere
-
         $scope.SaveChanges;
-
     });
     // $scope.$on("$locationChangeStart", $scope.onExit);
     // $(window).unload(function() {

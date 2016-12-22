@@ -11,6 +11,9 @@
         },
         GetNames: function(searchTerm: string){
             return ApiCall.GetApiCall('itemnames?q="' + searchTerm + '"');
+        },
+        GetDescriptionForItemName : function(searchTerm: string){
+            return ApiCall.GetApiCall('description?q="' + searchTerm + '"');
         }
     };
 })
