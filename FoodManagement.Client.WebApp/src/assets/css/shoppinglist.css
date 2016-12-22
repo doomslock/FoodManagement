@@ -42,6 +42,7 @@
 
 .shoppingList li {
     margin-top: 10px;
+    margin-right: 10px;
     padding-bottom: 10px;
     border-bottom: solid darkblue 1px;
 }
@@ -62,10 +63,11 @@
     outline: 1px solid #999;
 }
 
-.shoppingList li .itemHead {
+.itemHead {
     position:relative;
-    background-color: #bbb;
+    background-color: royalblue;
     font-size: 25px;
+    color: white;
     font-family: 'Berlin Sans FB'
 }
 
@@ -75,14 +77,18 @@
 
 .amount{
     position: absolute;
-    left: 500px;
-    top: 40px;
+    left: 400px;
+    top: 30px;
 }
 
 .itemImage{
     width: 100px;
     height: 100px;
-    background: royalblue;
+    background: darkblue;
+}
+
+.itemBody{
+    padding-left: 30px; 
 }
 
 .itemBody label:first-of-type {
