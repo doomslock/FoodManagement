@@ -4,7 +4,7 @@
 
 //export default angular.module('app', []);
 
-var foodManagementApp = angular.module('FoodManagement', ['ngRoute'])
+var foodManagementApp = angular.module('FoodManagement', ['ngRoute', 'luegg.directives'])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider.when('/shoplist',
             {

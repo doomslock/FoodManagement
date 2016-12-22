@@ -1,7 +1,7 @@
 /// <reference path="../typings/angularjs/angular.d.ts" />
 'use strict';
 //export default angular.module('app', []);
-var foodManagementApp = angular.module('FoodManagement', ['ngRoute'])
+var foodManagementApp = angular.module('FoodManagement', ['ngRoute', 'luegg.directives'])
     .config(function ($routeProvider, $locationProvider) {
     $routeProvider.when('/shoplist', {
         templateUrl: '/app/components/shoppinglist/shoppinglist.html',
