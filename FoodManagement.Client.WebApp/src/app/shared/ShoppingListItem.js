@@ -3,6 +3,7 @@ var ShoppingListItem = (function () {
         this.id = '0';
         this.name = name;
         this.amount = amount;
+        this.show = true;
     }
     return ShoppingListItem;
 }());

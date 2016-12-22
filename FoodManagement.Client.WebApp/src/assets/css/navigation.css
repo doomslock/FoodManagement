@@ -1,0 +1,6 @@
+navbar ul {
+    width:60px; 
+    height:100%; 
+    list-style-type: none;
+    background: royalblue;
+}
