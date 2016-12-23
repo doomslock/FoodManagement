@@ -90,7 +90,11 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
         }
     }
     $scope.MarkBought = function(item: ShoppingListItem){
-          ShoppingListService.MarkBought(item.id);
+        ShoppingListService.MarkBought(item.id);
+    }
+
+    $scope.MarkAllAsBought = function(){
+        ShoppingListService.MarkAllBought();
     }
 
     //$window.onbeforeunload =  $scope.onExit;

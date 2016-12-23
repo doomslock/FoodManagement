@@ -18,7 +18,12 @@
         MarkBought : function(itemId: string)
         {
             let patchdoc = new PatchDoc("replace","/Bought","true");
-            return ApiCall.PatchApiCall('shoppinglists/65a5fff3-cd22-4212-8bcf-c8112e3d2b7a/items/'+itemId, patchdoc)
+            return ApiCall.PatchApiCall('shoppinglists/65a5fff3-cd22-4212-8bcf-c8112e3d2b7a/items/'+itemId, patchdoc);
+        },
+        MarkAllBought : function()
+        {
+            let patchdoc = new PatchDoc("replace","/AreBought","true");
+            return ApiCall.PatchApiCall('shoppinglists/65a5fff3-cd22-4212-8bcf-c8112e3d2b7a/items/', patchdoc);
         }
     };
 })

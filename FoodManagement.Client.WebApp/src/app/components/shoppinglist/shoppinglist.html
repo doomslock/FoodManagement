@@ -3,7 +3,9 @@
         <input type="text" class="search" ng-model="searchTerm" ng-change="SearchTermChanged()" />
         <img src="assets/img/Search.png" width="20"/>
     </div>
-    
+    <button  class="boughtCheck all" ng-click="MarkAllAsBought()">
+        <img src="assets/img/Check.png" width="20" height="20;"/>
+    </button>
     <button id="sync" class="glyphicon glyphicon-refresh" ng-click="SaveChanges()"></button>
 </nav>
 <main>
