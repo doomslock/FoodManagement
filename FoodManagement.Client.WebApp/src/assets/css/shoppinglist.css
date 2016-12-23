@@ -9,16 +9,15 @@
 .search {
     font-size: 24px;
     border: none;
-    position: absolute;
-    top: 50px;
-    left: 5px;
-    position: absolute;
-    top: 30px;
-    left: 120px;
+    position: relative;
+    top: 5px;
+    left: 10px;
+    width: 270px;
 }
-    .search:focus{
-        outline: none;
-    }
+
+.search:focus {
+    outline: none;
+}
 
 .inputSearchLeft {
     height: 45px;
@@ -32,12 +31,15 @@
     left: 110px;
 }
 
-.shoppingList{
+.shoppingList {
     list-style-type: none;
-        margin: 20px;
+    margin: 20px;
+    margin-bottom: 10px;
     padding: 0;
     overflow-y: scroll;
-    height: 800px;
+    height: 95%;
+    max-width: 1200px;
+    min-width: 750px;
 }
 
 .shoppingList li {
@@ -64,39 +66,75 @@
 }
 
 .itemHead {
-    position:relative;
+    position: relative;
     background-color: royalblue;
     font-size: 25px;
     color: white;
     font-family: 'Berlin Sans FB'
 }
 
-.itemName{
+.itemName {
     margin-left: 20px;
 }
 
-.amount{
+.amount {
     position: absolute;
     left: 400px;
     top: 30px;
 }
 
-.itemImage{
+.itemImage {
     width: 100px;
     height: 100px;
     background: darkblue;
 }
 
-.itemBody{
-    padding-left: 30px; 
+.itemBody {
+    padding-left: 30px;
 }
 
 .itemBody label:first-of-type {
-    float:left;
+    float: left;
 }
 
 main {
     float: left;
     width: 100%;
-    
+    height: 90%;
+}
+
+.boughtCheck {
+    background: darkblue;
+    border: inset #314b9a;
+    position: absolute;
+    right: 50px;
+    top: 30px;
+}
+
+.newItem {
+    width: 93%;
+    height: 50px;
+    color: white;
+    background: royalblue;
+    border: inset #314b9a;
+    margin-left: 20px;
+    max-width: 1150px;
+    min-width: 740px;
+}
+
+#sync{
+        color: white;
+    background: darkblue;
+    border: inset #314b9a;
+    width: 50px;
+    height: 45px;
+    position: absolute;
+    right: 100px;
+    top: 20px;
+}
+
+.inputSearchLeft img {
+    position: absolute;
+    right: 15px;
+    top: 12px;
 }

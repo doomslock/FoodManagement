@@ -20,6 +20,13 @@ foodManagementApp.factory('ApiCall', function ApiCall($http) {
             }, function () {
                 alert("something went wrong");
             });
+        },
+        PatchApiCall: function (url, patchDoc) {
+            return $http.patch('http://localhost:55079/api/' + url, patchDoc).then(function (response, status) {
+                return (response.data);
+            }, function () {
+                alert("something went wrong");
+            });
         }
     };
 });

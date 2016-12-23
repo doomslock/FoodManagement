@@ -16,3 +16,15 @@ class ShoppingListItem
         this.show = true;
     }
 }
+
+class PatchDoc{
+    public op: string;
+    public path: string;
+    public value: string;
+    public constructor(op: string, path: string, value:string)
+    {
+        this.op = op;
+        this.path = path;
+        this.value = value;
+    }
+}

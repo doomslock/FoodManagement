@@ -1,6 +1,9 @@
 ﻿<nav id="horizontal-nav">
-    <div class="inputSearchLeft"></div>
-    <input type="text" class="search" ng-model="searchTerm" ng-change="SearchTermChanged()" />
+    <div class="inputSearchLeft">
+        <input type="text" class="search" ng-model="searchTerm" ng-change="SearchTermChanged()" />
+        <img src="assets/img/Search.png" width="20"/>
+    </div>
+    
     <button id="sync" class="glyphicon glyphicon-refresh" ng-click="SaveChanges()"></button>
 </nav>
 <main>
@@ -11,6 +14,9 @@
                 <span class="itemName">{{item.name}}</span>
                 <span class="amount">x {{item.amount}}</span>
                 <button class="update-shoppinglist glyphicon glyphicon-pencil" ng-show="item.changed" ></button>
+                <button class="boughtCheck" ng-click="MarkBought(item)">
+                    <img src="assets/img/Check.png" width="20" height="20;"/>
+                </button>
             </div>
             <div hidden class="itemBody" id="details{{item.id}}">
                 <label for="name{{item.id}}">Name</label>
@@ -27,7 +33,7 @@
             </div>
         </li>
     </ul>
-    <button class="glyphicon glyphicon-plus" ng-click="NewItem()"></button>
+    <button class="glyphicon glyphicon-plus newItem" ng-click="NewItem()"></button>
 </main>
 <link href="assets/css/shoppinglist.css" rel="stylesheet" />
 <link href="assets/css/shoppingitemname.css" rel="stylesheet"/>

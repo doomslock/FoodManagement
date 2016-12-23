@@ -7,4 +7,12 @@ var ShoppingListItem = (function () {
     }
     return ShoppingListItem;
 }());
+var PatchDoc = (function () {
+    function PatchDoc(op, path, value) {
+        this.op = op;
+        this.path = path;
+        this.value = value;
+    }
+    return PatchDoc;
+}());
 //# sourceMappingURL=ShoppingListItem.js.map
