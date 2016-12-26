@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="FoodManagement">
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <title>FoodManagement</title>
+    <link href="assets/css/navigation.css" rel="stylesheet" />
+    <link href="assets/css/index.css" rel="stylesheet" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav id="vertical-nav">
+        <ul>
+            <li>
+                <a href="/"><img src="assets/img/Logo.png" alt="FoodManagement"/></a>
+            </li>
+            <li>
+                <a href="shoplist"><img src="assets/img/shoppinglist.png" alt="Shopping list" /></a>
+            </li>
+        </ul>
+    </nav>
+    <ng-view></ng-view>
+    <script src="assets/libs/jquery/jquery-3.1.1.min.js"></script>
+    <script src="assets/libs/angular/angular.min.js"></script>
+    <script src="assets/libs/angular/angular-route.min.js"></script>
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
+    <script src="app.js"></script>
+    <script src="app/components/home/HomeController.js"></script>
+    <script src="app/components/shoppinglist/ShoppingListController.js"></script>
+    <script src="app/components/shoppingitemname/shoppingitemnameDirective.js"></script>
+    <script src="app/shared/ApiCall.js"></script>
+    <script src="app/shared/ShoppinglistService.js"></script>
+    <script src="app/shared/ShoppingListItem.js"></script>
+    <script src="app/shared/GoogleImageSearch.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/js/shoppinglist.js"></script>
+</body>
+
+</html>

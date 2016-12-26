@@ -8,7 +8,7 @@ using System.Linq;
 namespace FoodManagement.Test.Infrastructure
 {
     [TestClass]
-    //[Ignore]
+    [Ignore]
     public class FMDbContextTest
     {
         FMDbContext context;

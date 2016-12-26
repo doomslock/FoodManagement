@@ -8,12 +8,14 @@ namespace FoodManagement.Core
     {
         
         IEnumerable<ShoppingListItem> GetFamilyShoppingList(Guid familyId);
-        ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid id);
+        ShoppingListItem GetShoppingListItemDetailsById(Guid familyId, Guid itemId);
         ShoppingListItem GetShoppingListItemDetailsByName(Guid familyId, string name);
         void AddItemToFamilyShoppingList(Guid familyId, ShoppingListItem item);
         void MarkShoppingListItemAsBought(Guid familyId, Guid itemId);
         void MarkAllShoppingListItemsAsBought(Guid familyId);
         void AlterShoppingListItemDetails(Guid familyId, ShoppingListItem item);
         void RemoveShoppingListItemForFamily(Guid familyId, Guid shoppingListItemId);
+        IEnumerable<string> GetShoppingListItemNames(string searchTerm);
+        string GetDescriptionsForItemName(string itemName);
     }
 }

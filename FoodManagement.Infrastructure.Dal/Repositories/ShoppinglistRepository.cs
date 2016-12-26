@@ -18,7 +18,7 @@ namespace FoodManagement.Infrastructure.Dal
 
         public void Delete(Guid shoppingListItemId)
         {
-            base.Delete(base.SelectById(shoppingListItemId));
+            base.Delete(base.FindById(shoppingListItemId));
         }
     }
 }

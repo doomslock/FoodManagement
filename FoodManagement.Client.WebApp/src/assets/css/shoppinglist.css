@@ -1,0 +1,153 @@
+#horizontal-nav {
+    background: royalblue;
+    width: 100%;
+    height: 90px;
+    border-left: solid darkblue 1px;
+}
+
+.search {
+    font-size: 24px;
+    border: none;
+    position: relative;
+    top: 5px;
+    left: 10px;
+    width: 270px;
+}
+
+.search:focus {
+    outline: none;
+}
+
+.inputSearchLeft {
+    height: 45px;
+    width: 320px;
+    border-radius: 90px;
+    -moz-border-radius: 90px;
+    -webkit-border-radius: 90px;
+    background: white;
+    position: absolute;
+    top: 25px;
+    left: 110px;
+}
+
+.shoppingList {
+    list-style-type: none;
+    margin: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    overflow-y: scroll;
+    height: 95%;
+    max-width: 1200px;
+    min-width: 750px;
+}
+
+.shoppingList li {
+    margin-top: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid darkblue 1px;
+}
+
+.shoppingList li div input {
+    border: none;
+}
+
+.shoppingList li div input:hover {
+    outline: 1px solid #999;
+}
+
+.shoppingList li div select {
+    border: none;
+}
+
+.shoppingList li div select:hover {
+    outline: 1px solid #999;
+}
+
+.itemHead {
+    position: relative;
+    background-color: royalblue;
+    font-size: 25px;
+    color: white;
+    font-family: 'Berlin Sans FB'
+}
+
+.itemName {
+    margin-left: 20px;
+}
+
+.amount {
+    position: absolute;
+    left: 400px;
+    top: 30px;
+}
+
+.itemImage {
+    width: 100px;
+    height: 100px;
+    background: darkblue;
+}
+
+.itemBody {
+    padding-left: 30px;
+}
+
+.itemBody label:first-of-type {
+    float: left;
+}
+
+main {
+    float: left;
+    width: 100%;
+    height: 90%;
+}
+
+.boughtCheck {
+    background: darkblue;
+    border: inset #314b9a;
+    position: absolute;
+    right: 50px;
+    top: 30px;
+    width: 50px;
+    height: 45px;
+}
+
+.boughtCheck img{
+    margin-bottom: 5px;
+}
+
+.boughtCheck.all{
+    top: 20px;
+}
+
+.boughtCheck.all img{
+    margin-bottom: 0px;
+}
+
+.newItem {
+    width: 93%;
+    height: 50px;
+    color: white;
+    background: royalblue;
+    border: inset #314b9a;
+    margin-left: 20px;
+    max-width: 1150px;
+    min-width: 740px;
+}
+
+#sync{
+        color: white;
+    background: darkblue;
+    border: inset #314b9a;
+    width: 50px;
+    height: 45px;
+    position: absolute;
+    right: 100px;
+    top: 20px;
+}
+
+.inputSearchLeft img {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+}

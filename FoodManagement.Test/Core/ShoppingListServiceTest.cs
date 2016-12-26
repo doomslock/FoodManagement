@@ -14,7 +14,7 @@ namespace FoodManagement.Test
     [TestClass]
     public class ShoppingListServiceTest
     {
-        ShoppinglistService slService;
+        ShoppingListService slService;
         Person currentUser;
         List<Family> familyList = new List<Family>();
         List<Person> people = new List<Person>();
@@ -37,9 +37,9 @@ namespace FoodManagement.Test
             //uowMock.Setup(m => m.Repository<Person>()).Returns(pRepMock.Object);
             //familyList.FirstOrDefault(f => f.Id == Guid.NewGuid());
             var fRepMock = new Mock<IRepository<Family>>();
-            fRepMock.Setup(m => m.SelectById(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<Expression<Func<Family, bool>>>())).Returns((Guid g, string s, Expression<Func<Family, bool>> filter) => familyList.First(f => f.Id == g));
-            fRepMock.Setup(m => m.SelectById(It.IsAny<Guid>(), null,null)).Returns((Guid g) => familyList.First(f => f.Id == g));
-            fRepMock.Setup(m => m.Select(It.IsAny<Expression<Func<Family, bool>>>(), It.IsAny<Func<IQueryable<Family>, IOrderedQueryable<Family>>>(), It.IsAny<string>())).Returns((Expression<Func<Family, bool>> filter,
+            fRepMock.Setup(m => m.FindById(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<Expression<Func<Family, bool>>>())).Returns((Guid g, string s, Expression<Func<Family, bool>> filter) => familyList.First(f => f.Id == g));
+            fRepMock.Setup(m => m.FindById(It.IsAny<Guid>(), null,null)).Returns((Guid g) => familyList.First(f => f.Id == g));
+            fRepMock.Setup(m => m.Find(It.IsAny<Expression<Func<Family, bool>>>(), It.IsAny<Func<IQueryable<Family>, IOrderedQueryable<Family>>>(), It.IsAny<string>())).Returns((Expression<Func<Family, bool>> filter,
             Func<IQueryable<Family>, IOrderedQueryable<Family>> orderBy, string includeProperties) =>
             {
                 var its = familyList.AsQueryable();
@@ -72,8 +72,8 @@ namespace FoodManagement.Test
                 shoppingList.Remove(shoppingList.FirstOrDefault(s => s.Id == sli.Id));
                 shoppingList.Add(sli);
             });
-            sliRepMock.Setup(m => m.SelectById(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<Expression<Func<ShoppingListItem, bool>>>())).Returns((Guid g, string s, Expression<Func<ShoppingListItem, bool>> filter) => shoppingList.First(f => f.Id == g));
-            sliRepMock.Setup(m => m.Select(It.IsAny<Expression<Func<ShoppingListItem, bool>>>(), It.IsAny<Func<IQueryable<ShoppingListItem>, IOrderedQueryable<ShoppingListItem>>>(), It.IsAny<string>())).Returns((Expression<Func<ShoppingListItem, bool>> filter,
+            sliRepMock.Setup(m => m.FindById(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<Expression<Func<ShoppingListItem, bool>>>())).Returns((Guid g, string s, Expression<Func<ShoppingListItem, bool>> filter) => shoppingList.First(f => f.Id == g));
+            sliRepMock.Setup(m => m.Find(It.IsAny<Expression<Func<ShoppingListItem, bool>>>(), It.IsAny<Func<IQueryable<ShoppingListItem>, IOrderedQueryable<ShoppingListItem>>>(), It.IsAny<string>())).Returns((Expression<Func<ShoppingListItem, bool>> filter,
             Func<IQueryable<ShoppingListItem>, IOrderedQueryable<ShoppingListItem>> orderBy, string includeProperties) =>
             {
                 var its = shoppingList.AsQueryable();
@@ -94,7 +94,7 @@ namespace FoodManagement.Test
             sliRepMock.Setup(m => m.Delete(It.IsAny<ShoppingListItem>())).Callback((ShoppingListItem sli) => shoppingList.Remove(shoppingList.Where(s=> s.Id == sli.Id).FirstOrDefault()));
             var iRepMock = new Mock<IItemRepository>();
             iRepMock.Setup(m => m.Insert(It.IsAny<Item>())).Callback((Item i) => items.Add(i));
-            iRepMock.Setup(m => m.Select(It.IsAny<Expression<Func<Item, bool>>>(), It.IsAny<Func<IQueryable<Item>, IOrderedQueryable<Item>>>(), It.IsAny<string>())).Returns((Expression<Func<Item, bool>> filter,
+            iRepMock.Setup(m => m.Find(It.IsAny<Expression<Func<Item, bool>>>(), It.IsAny<Func<IQueryable<Item>, IOrderedQueryable<Item>>>(), It.IsAny<string>())).Returns((Expression<Func<Item, bool>> filter,
             Func<IQueryable<Item>, IOrderedQueryable<Item>> orderBy, string includeProperties) =>
                 {
                     var its = items.AsQueryable();
@@ -113,7 +113,7 @@ namespace FoodManagement.Test
                 });
             var sRepMock = new Mock<IStoreRepository>();
             sRepMock.Setup(m => m.Insert(It.IsAny<Store>())).Callback((Store s) => stores.Add(s));
-            sRepMock.Setup(m => m.Select(It.IsAny<Expression<Func<Store, bool>>>(), It.IsAny<Func<IQueryable<Store>, IOrderedQueryable<Store>>>(), It.IsAny<string>())).Returns((Expression<Func<Store, bool>> filter,
+            sRepMock.Setup(m => m.Find(It.IsAny<Expression<Func<Store, bool>>>(), It.IsAny<Func<IQueryable<Store>, IOrderedQueryable<Store>>>(), It.IsAny<string>())).Returns((Expression<Func<Store, bool>> filter,
             Func<IQueryable<Store>, IOrderedQueryable<Store>> orderBy, string includeProperties) =>
             {
                 var its = stores.AsQueryable();
@@ -135,7 +135,7 @@ namespace FoodManagement.Test
             uowMock.Setup(m => m.Repository<ShoppingListItem>()).Returns(sliRepMock.Object);
             uowMock.Setup(m => m.Repository<Family>()).Returns(fRepMock.Object);
             uowMock.Setup(m => m.Save());
-            slService = new ShoppinglistService(uowMock.Object, new DependencyConfiguration().GetInstance<IMapper>());
+            slService = new ShoppingListService(uowMock.Object, new DependencyConfiguration().GetInstance<IMapper>());
         }
 
         [TestMethod]

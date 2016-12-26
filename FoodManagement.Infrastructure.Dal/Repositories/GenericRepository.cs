@@ -17,7 +17,7 @@ namespace FoodManagement.Infrastructure.Dal
             _context = context as DbContext;
         }
 
-        public virtual IEnumerable<TDataEntity> Select(
+        public virtual IEnumerable<TDataEntity> Find(
             Expression<Func<TDataEntity, bool>> filter = null,
             Func<IQueryable<TDataEntity>, IOrderedQueryable<TDataEntity>> orderBy = null,
             string includeProperties = "")
@@ -40,11 +40,11 @@ namespace FoodManagement.Infrastructure.Dal
             }
             else
             {
-                return query.ToList();
+                return query.ToList(); //Close DataReader
             }
         }
 
-        public virtual TDataEntity SelectById(Guid id, string includeProperties = "", Expression<Func<TDataEntity, bool>> filter = null)
+        public virtual TDataEntity FindById(Guid id, string includeProperties = "", Expression<Func<TDataEntity, bool>> filter = null)
         {
             Expression<Func<TDataEntity, bool>> exp;
             Expression<Func<TDataEntity, bool>> filter2 = (TDataEntity e) => e.Id == id;
@@ -55,7 +55,7 @@ namespace FoodManagement.Infrastructure.Dal
                 var body = Expression.AndAlso(filter?.Body, filter2.Body);
                 exp = Expression.Lambda<Func<TDataEntity, bool>>(Expression.AndAlso(filter?.Body, filter2.Body), filter2.Parameters[0]);
             }
-            return Select(exp, null, includeProperties).FirstOrDefault();
+            return Find(exp, null, includeProperties).FirstOrDefault();
         }
 
         public virtual void Insert(TDataEntity entity)

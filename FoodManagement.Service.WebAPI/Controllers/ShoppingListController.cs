@@ -1,6 +1,7 @@
 ﻿using FoodManagement.Core;
 using FoodManagement.Core.DTO;
 using Marvin.JsonPatch;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,38 @@ using System.Web.Http;
 
 namespace FoodManagement.Service.WebAPI.Controllers
 {
+    [FamilyAuthorize]
     [RoutePrefix("api/shoppinglists")]
     public class ShoppingListController : ApiController
     {
         IShoppingListService _shopService;
-        public ShoppingListController(IShoppingListService shopService)
+        IFamilyService _fService;
+        public ShoppingListController(IShoppingListService shopService, IFamilyService fService)
         {
             _shopService = shopService;
+            _fService = fService;
         }
         //TODO: find generic way to check authenticate someone (check whether he has access to certain data) for example has a person acces to a shoppinglist
         [HttpGet]
         public IHttpActionResult Get()
         {
             return Ok(_shopService.GetFamilyShoppingList(new Guid("1E81B125-F117-4040-9DBB-B92E1A034724")));
+        }
+
+        [Route("~/api/itemnames")]
+        [HttpGet]
+        public IHttpActionResult GetNames(string q)
+        {
+            IEnumerable<string> names = _shopService.GetShoppingListItemNames(JsonConvert.DeserializeObject<string>(q));
+            return Ok(names);
+        }
+
+        [Route("~/api/description")]
+        [HttpGet]
+        public IHttpActionResult GetDescriptions(string q)
+        {
+            string description = _shopService.GetDescriptionsForItemName(JsonConvert.DeserializeObject<string>(q));
+            return Ok(description);
         }
 
         //[Authorize]
