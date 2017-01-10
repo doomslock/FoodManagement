@@ -75,7 +75,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         [HttpPatch]
         public IHttpActionResult Patch([FromBody]JsonPatchDocument<ICollection<ShoppingListItem>> patchDoc, Guid familyId)
         {
-            if (patchDoc.Operations.FirstOrDefault(o => o.path == "AreBought" && (bool)o.value) != null)
+            if (patchDoc.Operations.FirstOrDefault(o => o.path == "/AreBought" && Convert.ToBoolean(o.value)) != null)
                 _shopService.MarkAllShoppingListItemsAsBought(familyId);
             return Ok();
         }
@@ -97,7 +97,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         public IHttpActionResult Patch([FromBody]JsonPatchDocument<ShoppingListItem> patchDoc , Guid familyId, Guid itemId)
         {
             var sli = _shopService.GetShoppingListItemDetailsById(familyId, itemId);
-            if(patchDoc.Operations.FirstOrDefault(o => o.path == "IsBought" && (bool)o.value) != null)
+            if(patchDoc.Operations.FirstOrDefault(o => o.path == "/IsBought" && Convert.ToBoolean(o.value)) != null)
                 _shopService.MarkShoppingListItemAsBought(familyId, sli.Id);
             return Ok();
         }

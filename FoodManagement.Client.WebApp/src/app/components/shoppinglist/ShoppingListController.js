@@ -83,10 +83,28 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
         }
     };
     $scope.MarkBought = function (item) {
-        ShoppingListService.MarkBought(item.id);
+        ShoppingListService.MarkBought(item.id).then(function () {
+            var index = $scope.shoppingList.indexOf(item);
+            if (index > -1) {
+                $scope.shoppingList.splice(index, 1);
+            }
+            index = -1;
+            originalShoppingList.some(function (el, i) {
+                if (el.id === item.id) {
+                    index = i;
+                    return true;
+                }
+            });
+            if (index > -1) {
+                originalShoppingList.splice(index, 1);
+            }
+        });
     };
     $scope.MarkAllAsBought = function () {
-        ShoppingListService.MarkAllBought();
+        ShoppingListService.MarkAllBought().then(function () {
+            $scope.shoppingList.splice(0, $scope.shoppingList.length);
+            originalShoppingList.splice(0, originalShoppingList.length);
+        });
     };
     //$window.onbeforeunload =  $scope.onExit;
     $scope.$on('$destroy', $scope.SaveChanges);

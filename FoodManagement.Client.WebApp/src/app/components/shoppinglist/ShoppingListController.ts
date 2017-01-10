@@ -19,14 +19,14 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
     });
 
     $scope.NameChanged = function (item: ShoppingListItem) {
-        ShoppingListService.GetDescriptionForItemName(item.name).then(function(data: string){
-            if(data != null && data.concat.length > 0)
+        ShoppingListService.GetDescriptionForItemName(item.name).then(function (data: string) {
+            if (data != null && data.concat.length > 0)
                 item.description = data;
             $scope.CheckForChange(item);
-        }, function(){
+        }, function () {
             $scope.CheckForChange(item);
         });
-        
+
     }
 
     $scope.CheckForChange = function (item: ShoppingListItem) {
@@ -89,12 +89,32 @@ foodManagementApp.controller('ShoppingListController', function ShoppingListCont
             }
         }
     }
-    $scope.MarkBought = function(item: ShoppingListItem){
-        ShoppingListService.MarkBought(item.id);
+    $scope.MarkBought = function (item: ShoppingListItem) {
+        ShoppingListService.MarkBought(item.id).then(
+            function () {
+                let index = $scope.shoppingList.indexOf(item);
+                if (index > -1) {
+                    $scope.shoppingList.splice(index, 1);
+                }
+                index = -1;
+                originalShoppingList.some(function (el, i) {
+                    if (el.id === item.id) {
+                        index = i;
+                        return true;
+                    }
+                });
+                if (index > -1) {
+                    originalShoppingList.splice(index, 1);
+                }
+            }
+        );
     }
 
-    $scope.MarkAllAsBought = function(){
-        ShoppingListService.MarkAllBought();
+    $scope.MarkAllAsBought = function () {
+        ShoppingListService.MarkAllBought().then(function(){
+            $scope.shoppingList.splice(0,$scope.shoppingList.length)
+            originalShoppingList.splice(0,originalShoppingList.length)
+        });
     }
 
     //$window.onbeforeunload =  $scope.onExit;
