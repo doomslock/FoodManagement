@@ -45,23 +45,41 @@
     margin-top: 10px;
     margin-right: 10px;
     padding-bottom: 10px;
-    border-bottom: solid darkblue 1px;
+    /*border-bottom: solid darkblue 1px;*/
 }
 
 .shoppingList li div input {
     border: none;
+        background-color: #8FA7F0;
 }
 
 .shoppingList li div input:hover {
-    outline: 1px solid #999;
+    outline: 1px auto #999;
+}
+
+.shoppingList li div input:focus {
+    outline: 1px auto #999;
 }
 
 .shoppingList li div select {
     border: none;
+    background-color: #8FA7F0;
 }
 
 .shoppingList li div select:hover {
-    outline: 1px solid #999;
+    outline: 1px auto #999;
+}
+
+.shoppingList li div select:focus {
+    outline: 1px auto #999;
+}
+
+.shoppingList li div input.nameInputField:hover{
+        outline: none;
+}
+
+.shoppingList li div input.nameInputField:focus{
+        outline: none;
 }
 
 .itemHead {
@@ -89,7 +107,8 @@
 }
 
 .itemBody {
-    padding-left: 30px;
+    padding: 10px 0 10px 30px;
+    background-color: #8FA7F0;
 }
 
 .itemBody label:first-of-type {

@@ -21,16 +21,24 @@
                 </button>
             </div>
             <div hidden class="itemBody" id="details{{item.id}}">
-                <label for="name{{item.id}}">Name</label>
-                <shopping-item-name class="nameInput" id="name{{item.id}}" item="item" blur="NameChanged(item)"></shopping-item-name>
-                <label for="amount{{item.id}}">Amount</label>
-                <input id="amount{{item.id}}" type="number" min="0" ng-model="item.amount" ng-blur="CheckForChange(item)" /><br/>
-                <label for="store{{item.id}}">Store</label>
-                <select id="store{{item.id}}" ng-blur="CheckForChange(item)">
-                    <option ng-repeat="store in storelist">{{store.name}}</option>
-                </select><br/>
-                <label for="description{{item.id}}">Description</label>
-                <input id="description{{item.id}}" type="text" ng-model="item.description" ng-blur="CheckForChange(item)" />
+                <fieldset>
+                    <label for="name{{item.id}}">Name</label>
+                    <shopping-item-name class="nameInput" id="name{{item.id}}" item="item" blur="NameChanged(item)"></shopping-item-name>
+                </fieldset>
+                <fieldset>
+                    <label for="amount{{item.id}}">Amount</label>
+                    <input id="amount{{item.id}}" type="number" min="0" ng-model="item.amount" ng-blur="CheckForChange(item)" /><br/>
+                </fieldset>
+                <fieldset>
+                    <label for="store{{item.id}}">Store</label>
+                    <select id="store{{item.id}}" ng-blur="CheckForChange(item)">
+                        <option ng-repeat="store in storelist">{{store.name}}</option>
+                    </select><br/>
+                </fieldset>
+                <fieldset>
+                    <label for="description{{item.id}}">Description</label>
+                    <input id="description{{item.id}}" type="text" ng-model="item.description" ng-blur="CheckForChange(item)" />
+                </fieldset>
                 <!--<span class="glyphicon glyphicon-floppy-save" ng-click="saveChanges(item.id)"></span>-->
             </div>
         </li>

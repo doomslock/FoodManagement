@@ -27,7 +27,7 @@ namespace FoodManagement.Service.WebAPI.Controllers
         [HttpGet]
         public IHttpActionResult Get()
         {
-            return Ok(_shopService.GetFamilyShoppingList(new Guid("1E81B125-F117-4040-9DBB-B92E1A034724")));
+            return Ok(_shopService.GetFamilyShoppingList(new Guid("65a5fff3-cd22-4212-8bcf-c8112e3d2b7a")));
         }
 
         [Route("~/api/itemnames")]
