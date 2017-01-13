@@ -2,10 +2,10 @@
     background: royalblue;
     width: 100%;
     height: 90px;
-    border-left: solid darkblue 1px;
+    border-left: solid #0C36B3 1px;
 }
 
-.search {
+.searchFilter {
     font-size: 24px;
     border: none;
     position: relative;
@@ -14,11 +14,11 @@
     width: 270px;
 }
 
-.search:focus {
+.searchFilter:focus {
     outline: none;
 }
 
-.inputSearchLeft {
+.inputSearchDiv {
     height: 45px;
     width: 320px;
     border-radius: 90px;
@@ -48,38 +48,62 @@
     /*border-bottom: solid darkblue 1px;*/
 }
 
-.shoppingList li div input {
+.shoppingList fieldset * {
+    background-color: rgba(0,0,0,0);
+    /*margin-left: 5px;*/
+}
+
+.shoppingList .amount input[type="number"]{
+    width: 4em;
+    margin-left:35px;
+    border: solid #959595 1px;
+}
+
+.shoppingList .description textarea{
+    width: 50%;
+    min-width: 200px;
+    height: 50px;
     border: none;
-        background-color: #8FA7F0;
+    margin-left: 5px;
+    border: solid #959595 1px;
 }
 
-.shoppingList li div input:hover {
+/*.shoppingList li div input:hover {
+    outline: 1px auto #999;
+}*/
+
+/*.shoppingList li div input:focus {
+    outline: 1px auto #999;
+}*/
+
+.shoppingList .store select {
+    border: solid #959595 1px;
+    min-width: 100px;
+    margin-left: 50px;
+}
+
+.shoppingList .store select:hover {
     outline: 1px auto #999;
 }
 
-.shoppingList li div input:focus {
+.shoppingList .store select:focus {
     outline: 1px auto #999;
 }
-
-.shoppingList li div select {
-    border: none;
-    background-color: #8FA7F0;
+.nameInputContainer{
+    position: relative;
+    width: 200px;
+    height: 25px;
+    border: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.shoppingList li div select:hover {
-    outline: 1px auto #999;
+.shoppingList li div input.nameInputField:hover {
+    outline: none;
 }
 
-.shoppingList li div select:focus {
-    outline: 1px auto #999;
-}
-
-.shoppingList li div input.nameInputField:hover{
-        outline: none;
-}
-
-.shoppingList li div input.nameInputField:focus{
-        outline: none;
+.shoppingList li div input.nameInputField:focus {
+    outline: none;
 }
 
 .itemHead {
@@ -94,7 +118,7 @@
     margin-left: 20px;
 }
 
-.amount {
+.xAmount {
     position: absolute;
     left: 400px;
     top: 30px;
@@ -103,7 +127,7 @@
 .itemImage {
     width: 100px;
     height: 100px;
-    background: darkblue;
+    background: #0C36B3;
 }
 
 .itemBody {
@@ -118,12 +142,13 @@
 main {
     float: left;
     width: 100%;
-    height: calc(100% - 90px);;
+    height: calc(100% - 90px);
+    ;
 }
 
 .boughtCheck {
-    background: darkblue;
-    border: inset #314b9a;
+    background: #0C36B3;
+    border: inset #1D4CD8;
     position: absolute;
     right: 50px;
     top: 30px;
@@ -131,15 +156,15 @@ main {
     height: 45px;
 }
 
-.boughtCheck img{
+.boughtCheck img {
     margin-bottom: 5px;
 }
 
-.boughtCheck.all{
+.boughtCheck.all {
     top: 20px;
 }
 
-.boughtCheck.all img{
+.boughtCheck.all img {
     margin-bottom: 0px;
 }
 
@@ -148,16 +173,16 @@ main {
     height: 50px;
     color: white;
     background: royalblue;
-    border: inset #314b9a;
+    border: inset #1D4CD8;
     margin-left: 20px;
     max-width: 1150px;
     min-width: 740px;
 }
 
-#sync{
-        color: white;
-    background: darkblue;
-    border: inset #314b9a;
+#sync {
+    color: white;
+    background: #0C36B3;
+    border: inset #1D4CD8;
     width: 50px;
     height: 45px;
     position: absolute;
