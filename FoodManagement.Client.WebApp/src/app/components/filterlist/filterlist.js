@@ -1,16 +1,17 @@
 /// <reference path="../../shared/ShoppingListItem.ts" />
 'use strict';
-foodManagementApp.directive('shoppingItemName', function () {
+foodManagementApp.directive('filterList', function () {
     return {
         restrict: 'E',
         scope: {
             item: '=item',
             blur: '&blur'
         },
-        templateUrl: '/app/components/shoppingitemname/shoppingitemname.html',
+        templateUrl: '/app/components/filterlist/filterlist.html',
         controller: ['$scope', 'ShoppingListService', function ($scope, ShoppingListService) {
-                $scope.SelectedItemName = function (name) {
+                $scope.SelectedItem = function (name) {
                     $scope.item.name = $scope.selected;
+                    $scope.selected = "";
                 };
                 $scope.Search = function (searchTerm) {
                     if (searchTerm.length > 1) {
@@ -30,4 +31,4 @@ foodManagementApp.directive('shoppingItemName', function () {
             }]
     };
 });
-//# sourceMappingURL=shoppingitemnameDirective.js.map
+//# sourceMappingURL=filterlist.js.map

@@ -1,5 +1,5 @@
 
-    <select ng-model="selected" ng-change="SelectedItemName()" ng-blur="Blur()" class="nameSelect">
+    <select ng-model="selected" ng-change="SelectedItem()" ng-blur="Blur()" class="nameSelect">
         <option ng-repeat="f in found">{{f}}</option>
     </select>
     <input type="text" ng-model="item.name" ng-blur="Blur()" ng-change="Search(item.name)" class="nameInputField" />

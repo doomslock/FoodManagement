@@ -1,18 +1,19 @@
 /// <reference path="../../shared/ShoppingListItem.ts" />
 
 'use strict';
-
-foodManagementApp.directive('shoppingItemName', function () {
+/* Make more generic so that it can also be used for stores*/
+foodManagementApp.directive('filterList', function () {
     return {
         restrict: 'E',
         scope: {
             item: '=item',
             blur: '&blur'
         },
-        templateUrl: '/app/components/shoppingitemname/shoppingitemname.html',
+        templateUrl: '/app/components/filterlist/filterlist.html',
         controller: ['$scope', 'ShoppingListService', function ($scope, ShoppingListService) {
-            $scope.SelectedItemName = function (name: string) {
+            $scope.SelectedItem = function (name: string) {
                 $scope.item.name = $scope.selected;
+                $scope.selected = "";
             }
 
             $scope.Search = function (searchTerm: string) {
